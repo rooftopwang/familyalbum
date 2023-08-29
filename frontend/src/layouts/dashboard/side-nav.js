@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import PropTypes from 'prop-types';
-import ArrowTopRightOnSquareIcon from '@heroicons/react/24/solid/ArrowTopRightOnSquareIcon';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
 import {
   Box,
@@ -134,35 +134,19 @@ export const SideNav = (props) => {
             color="neutral.100"
             variant="subtitle2"
           >
-            Need more features?
+            Reached Daily Schedule?
           </Typography>
           <Typography
             color="neutral.500"
             variant="body2"
           >
-            Check out our Pro solution template.
+            Logout and Have a Rest
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              mt: 2,
-              mx: 'auto',
-              width: '160px',
-              '& img': {
-                width: '100%'
-              }
-            }}
-          >
-            <img
-              alt="Go to pro"
-              src="/assets/devias-kit-pro.png"
-            />
-          </Box>
           <Button
             component="a"
             endIcon={(
               <SvgIcon fontSize="small">
-                <ArrowTopRightOnSquareIcon />
+                <PowerSettingsNewIcon />
               </SvgIcon>
             )}
             fullWidth
@@ -171,7 +155,7 @@ export const SideNav = (props) => {
             target="_blank"
             variant="contained"
           >
-            Pro Live Preview
+            Log Out
           </Button>
         </Box>
       </Box>
