@@ -44,7 +44,7 @@ router.post("/signup", async (req, res, next) => {
 
 router.post("/login", async (req, res) => {
   const email = req.body.email;
-  const password = req.body.password;
+  const password = req.body.password.toString();
 
   let user;
   try {
@@ -62,7 +62,14 @@ router.post("/login", async (req, res) => {
   }
 
   const token = createJSONToken(email);
-  res.json({ token });
+  res.json({
+    token,
+    user: {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    },
+  });
 });
 
 module.exports = router;

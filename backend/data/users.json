@@ -1,1 +1,32 @@
-{"users":[{"email":"test1@test.com","name":"test1","password":"$2a$12$rzA524I9rTf1cCO/OgO7Yeb7oG7U9PajNC8ErhkemI4Ij6xGRWZbm","id":"baa8cdb3-30bd-46ef-a5cb-843e272ace91","isAdmin":false},{"email":"test2@test.com","name":"test2","password":"$2a$12$ZYDwk3oylNhQ1JutgoOE6umccdRCHtBrfk4/1VmCgnaEh.8MiAivi","id":"40c1564a-1e47-40ef-93e7-14668496340e","isAdmin":false}]}
+{
+  "users": [
+    {
+      "email": "test1@test.com",
+      "name": "test1",
+      "password": "$2a$12$rzA524I9rTf1cCO/OgO7Yeb7oG7U9PajNC8ErhkemI4Ij6xGRWZbm",
+      "id": "baa8cdb3-30bd-46ef-a5cb-843e272ace91",
+      "isAdmin": false
+    },
+    {
+      "email": "test2@test.com",
+      "name": "test2",
+      "password": "$2a$12$ZYDwk3oylNhQ1JutgoOE6umccdRCHtBrfk4/1VmCgnaEh.8MiAivi",
+      "id": "40c1564a-1e47-40ef-93e7-14668496340e",
+      "isAdmin": false
+    },
+    {
+      "email": "wolfgangwang@hotmail.ca",
+      "name": "Wolfgang Wang",
+      "password": "$2a$12$UFA7j8Ww0i2hkoJsoepOH.oijKkRxQdkVchIXiUktlzMSmhmisTEK",
+      "id": "ba1ac870-e3b7-48b6-8d9c-b7a77c97c0b2",
+      "isAdmin": true
+    },
+    {
+      "email": "amber@hotmail.ca",
+      "name": "amber yang",
+      "password": "$2a$12$n1t3YURXEIhNFt6cpbkvgeKf27QIj686PWfQ0/j/3smUmLFSabGGy",
+      "id": "4b20dd9b-acf9-4ec5-952c-b26de2c1d367",
+      "isAdmin": false
+    }
+  ]
+}

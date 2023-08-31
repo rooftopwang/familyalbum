@@ -72,18 +72,14 @@ export const AuthProvider = (props) => {
     let isAuthenticated = false;
 
     try {
-      isAuthenticated = window.sessionStorage.getItem("authenticated") === "true";
+      const token = window.sessionStorage.getItem("token");
+      isAuthenticated = token != null && token != "";
     } catch (err) {
       console.error(err);
     }
 
     if (isAuthenticated) {
-      const user = {
-        id: "5e86809283e28b96d2d38537",
-        avatar: "/assets/avatars/avatar-anika-visser.png",
-        name: "Anika Visser",
-        email: "anika.visser@devias.io",
-      };
+      const user = state.user;
 
       dispatch({
         type: HANDLERS.INITIALIZE,
@@ -104,47 +100,54 @@ export const AuthProvider = (props) => {
     []
   );
 
-  const skip = () => {
-    try {
-      window.sessionStorage.setItem("authenticated", "true");
-    } catch (err) {
-      console.error(err);
-    }
-
-    const user = {
-      id: "5e86809283e28b96d2d38537",
-      avatar: "/assets/avatars/avatar-anika-visser.png",
-      name: "Anika Visser",
-      email: "anika.visser@devias.io",
-    };
-
-    dispatch({
-      type: HANDLERS.SIGN_IN,
-      payload: user,
-    });
+  const skip = async () => {
+    // try {
+    //   window.sessionStorage.setItem("authenticated", "true");
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    // const user = {
+    //   id: "5e86809283e28b96d2d38537",
+    //   avatar: "/assets/avatars/avatar-marcus-finn.png",
+    //   name: "Wolfgang Wang",
+    //   email: "wolfgangwang@hotmail.ca",
+    // };
+    // dispatch({
+    //   type: HANDLERS.SIGN_IN,
+    //   payload: user,
+    // });
+    await signIn("wolfgangwang@hotmail.ca", 123456);
   };
 
   const signIn = async (email, password) => {
-    if (email !== "demo@devias.io" || password !== "Password123!") {
-      throw new Error("Please check your email and password");
-    }
+    const user = {
+      email,
+      password,
+    };
+
+    const response = await fetch("http://localhost:8000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    const data = await response.json();
+    if (response.status == 422 || response.status == 401) throw new Error(data.message);
+    if (!response.ok) throw new Error("Did not pass anthentication. ");
+
+    data.user.avatar = "/assets/avatars/avatar-marcus-finn.png";
 
     try {
-      window.sessionStorage.setItem("authenticated", "true");
+      window.sessionStorage.setItem("token", data.token);
     } catch (err) {
       console.error(err);
     }
 
-    const user = {
-      id: "5e86809283e28b96d2d38537",
-      avatar: "/assets/avatars/avatar-anika-visser.png",
-      name: "Anika Visser",
-      email: "anika.visser@devias.io",
-    };
-
     dispatch({
       type: HANDLERS.SIGN_IN,
-      payload: user,
+      payload: data.user,
     });
   };
 
@@ -164,7 +167,7 @@ export const AuthProvider = (props) => {
     });
 
     if (response.status == 422 || response.status == 401) return response;
-    if (!response.ok) throw json({ message: "Did not pass anthentication. " }, { status: 500 });
+    if (!response.ok) throw new Error("Did not pass anthentication. ");
 
     // to-do: manage token from response
     // localStorage.setItem("token", response.token);
