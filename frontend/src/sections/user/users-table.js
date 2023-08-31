@@ -94,7 +94,7 @@ export const UsersTable = (props) => {
                     </TableCell>
                     <TableCell>{user.phone}</TableCell>
                     <TableCell>{createdAt}</TableCell>
-                    <TableCell>No</TableCell>
+                    <TableCell>{user.isAdmin ? "Yes" : "No"}</TableCell>
                   </TableRow>
                 );
               })}

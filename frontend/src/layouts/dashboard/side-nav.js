@@ -122,10 +122,10 @@ export const SideNav = (props) => {
           }}
         >
           <Typography color="neutral.100" variant="subtitle2">
-            Haven't Contribute One Yet?
+            Haven't Add One Today?
           </Typography>
           <Typography color="neutral.500" variant="body2">
-            Start Your First Memory Today
+            Let's Upload Your First Memory
           </Typography>
           <Button
             component="a"

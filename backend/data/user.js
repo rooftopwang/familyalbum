@@ -2,7 +2,13 @@ const { hash } = require("bcryptjs");
 const { v4: generateId } = require("uuid");
 
 const { NotFoundError } = require("../util/errors");
-const { readData, writeData } = require("./util");
+const {
+  readData,
+  writeData,
+  getRandomAvatar,
+  getRandomAddress,
+  getRandomPhone,
+} = require("./util");
 
 async function add(data) {
   const storedData = await readData("users.json");
@@ -11,12 +17,22 @@ async function add(data) {
   if (!storedData.users) {
     storedData.users = [];
   }
+
+  const avatar = await getRandomAvatar();
+  const address = await getRandomAddress();
+  const phone = getRandomPhone();
+
   storedData.users.push({
     ...data,
-    password: hashedPw,
     id: userId,
+    password: hashedPw,
     isAdmin: false,
+    createdAt: new Date().getTime(),
+    avatar,
+    address,
+    phone,
   });
+
   await writeData("users.json", storedData);
   return { id: userId, email: data.email };
 }

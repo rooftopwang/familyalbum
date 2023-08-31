@@ -19,5 +19,28 @@ async function writeData(filename, obj) {
   }
 }
 
+async function getRandomAvatar() {
+  const data = await readData("data.json");
+  const avatars = data.newavatars;
+  const avatar = avatars[Math.floor(Math.random() * avatars.length)];
+  return avatar;
+}
+
+async function getRandomAddress() {
+  const data = await readData("data.json");
+  const addresses = data.newaddress;
+  const address = addresses[Math.floor(Math.random() * addresses.length)];
+  return address;
+}
+
+function getRandomPhone() {
+  return `${
+    Math.floor(Math.random() * 10) % 2 == 1 ? "647" : "416"
+  }-${Math.floor(Math.random() * 1000)}-${Math.floor(Math.random() * 10000)}`;
+}
+
 exports.readData = readData;
 exports.writeData = writeData;
+exports.getRandomAvatar = getRandomAvatar;
+exports.getRandomAddress = getRandomAddress;
+exports.getRandomPhone = getRandomPhone;
