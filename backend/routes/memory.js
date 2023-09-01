@@ -8,12 +8,6 @@ const { get } = require("../data/user");
 
 /* GET users listing. */
 router.post("/", async (req, res, next) => {
-  //   var data = await readData("users.json");
-  //   var users = data.users.map((user) => {
-  //     delete user.password;
-  //     return user;
-  //   });
-
   const token = req.body.token;
   let user = null;
   try {
@@ -36,7 +30,7 @@ router.post("/", async (req, res, next) => {
     }
   );
 
-  //   if (!response.ok) throw new Error("fail to create image. ");
+  if (!response.ok) throw new Error("fail to create image. ");
 
   const blob = await response.blob();
   const arrayBuffer = await blob.arrayBuffer();

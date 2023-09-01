@@ -1,3 +1,1 @@
-{
-  "memories": []
-}
+{"memories":[{"id":"09a20d91-f4d0-48ed-bc1e-bd00dc52ebd9","userId":"572d0443-d26c-45c1-b762-dd3e58200f10","createdAt":1693532097707,"filename":"./public/images/memory-1693532097707.png","type":"Pets"},{"id":"0d495951-097c-4599-8212-64d4a47f30c7","userId":"572d0443-d26c-45c1-b762-dd3e58200f10","createdAt":1693532109775,"filename":"./public/images/memory-1693532109775.png","type":"Dishes"},{"id":"aed1d91d-e1d1-425d-927a-11e6c598ef39","userId":"572d0443-d26c-45c1-b762-dd3e58200f10","createdAt":1693532278112,"filename":"./public/images/memory-1693532278112.png","type":"Dishes"}]}
