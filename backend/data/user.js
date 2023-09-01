@@ -12,25 +12,26 @@ const {
 
 async function add(data) {
   const storedData = await readData("users.json");
+
   const userId = generateId();
+
   const hashedPw = await hash(data.password, 12);
+
   if (!storedData.users) {
     storedData.users = [];
   }
 
   const avatar = await getRandomAvatar();
-  const address = await getRandomAddress();
   const phone = getRandomPhone();
 
   storedData.users.push({
-    ...data,
     id: userId,
-    password: hashedPw,
+    ...data,
     isAdmin: false,
     createdAt: new Date().getTime(),
     avatar,
-    address,
     phone,
+    password: hashedPw,
   });
 
   await writeData("users.json", storedData);

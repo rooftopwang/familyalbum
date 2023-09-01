@@ -42,15 +42,25 @@ const Page = () => {
     setRowsPerPage(event.target.value);
   }, []);
 
+  const fetchPosts = useCallback(async () => {
+    const response = await fetch("http://localhost:8000/users");
+    const resData = await response.json();
+    setData(resData);
+  }, []);
+
+  const handleAdd = () => {
+    fetch("http://localhost:8000/auth/random", {
+      method: "POST",
+    })
+      .then((res) => {
+        fetchPosts();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    async function fetchPosts() {
-      // setIsFetching(true);
-      const response = await fetch("http://localhost:8000/users");
-      const resData = await response.json();
-      setData(resData);
-      // setIsFetching(false);
-    }
-    // setIsFetching(false);
     fetchPosts();
   }, []);
 
@@ -105,6 +115,7 @@ const Page = () => {
                     </SvgIcon>
                   }
                   variant="contained"
+                  onClick={handleAdd}
                 >
                   Add
                 </Button>

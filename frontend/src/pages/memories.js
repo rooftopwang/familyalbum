@@ -24,7 +24,6 @@ const Page = () => {
     async function fetchMemories() {
       const response = await fetch("http://localhost:8000/memory");
       const data = await response.json();
-      console.log(data);
       setMemories(data);
     }
 

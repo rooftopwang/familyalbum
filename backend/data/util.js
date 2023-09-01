@@ -30,6 +30,7 @@ function getEmailFromToken(token) {
     .email;
 }
 
+// users
 async function getRandomAvatar() {
   const data = await readData("data.json");
   const avatars = data.newavatars;
@@ -37,18 +38,33 @@ async function getRandomAvatar() {
   return avatar;
 }
 
-async function getRandomAddress() {
-  const data = await readData("data.json");
-  const addresses = data.newaddress;
-  const address = addresses[Math.floor(Math.random() * addresses.length)];
-  return address;
-}
+async function getRandomUser() {
+  try {
+    const response = await fetch("https://api.api-ninjas.com/v1/randomuser", {
+      method: "GET",
+      headers: {
+        "X-Api-Key": "pIQj3H/1jY4C/1AMUy8vTw==JmAjOEz6ulQmAfVr",
+      },
+    });
 
-async function getRandomMemoryDesc(category) {
-  const data = await readData("data.json");
-  const feeds = data[category];
-  const feed = feeds[Math.floor(Math.random() * feeds.length)];
-  return feed;
+    const user = await response.json();
+    const address = user.address.split(", ");
+    const data = {
+      name: user.name,
+      email: user.email,
+      password: "123456",
+      address: {
+        city: address[1],
+        country: "USA",
+        state: address[2].split(" ")[0],
+        street: address[0],
+      },
+    };
+
+    return data;
+  } catch (e) {
+    return await getRandomUser();
+  }
 }
 
 function getRandomPhone() {
@@ -57,11 +73,27 @@ function getRandomPhone() {
   }-${Math.floor(Math.random() * 1000)}-${Math.floor(Math.random() * 10000)}`;
 }
 
+// async function getRandomAddress() {
+//   const data = await readData("data.json");
+//   const addresses = data.newaddress;
+//   const address = addresses[Math.floor(Math.random() * addresses.length)];
+//   return address;
+// }
+
+// memories
+async function getRandomMemoryDesc(category) {
+  const data = await readData("data.json");
+  const feeds = data[category];
+  const feed = feeds[Math.floor(Math.random() * feeds.length)];
+  return feed;
+}
+
 exports.readData = readData;
 exports.writeData = writeData;
 exports.saveBlob = saveBlob;
 exports.getEmailFromToken = getEmailFromToken;
 exports.getRandomAvatar = getRandomAvatar;
-exports.getRandomAddress = getRandomAddress;
+exports.getRandomUser = getRandomUser;
+// exports.getRandomAddress = getRandomAddress;
 exports.getRandomPhone = getRandomPhone;
 exports.getRandomMemoryDesc = getRandomMemoryDesc;
