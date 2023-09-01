@@ -6,7 +6,7 @@ export const MemoriesSearch = () => (
     <OutlinedInput
       defaultValue=""
       fullWidth
-      placeholder="Search memory"
+      placeholder="Search by Author, Type, Year"
       startAdornment={
         <InputAdornment position="start">
           <SvgIcon color="action" fontSize="small">

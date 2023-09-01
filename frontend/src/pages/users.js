@@ -72,7 +72,7 @@ const Page = () => {
               <Stack spacing={1}>
                 <Typography variant="h4">Registered Users</Typography>
                 <Typography color="neutral.500" variant="body2">
-                  This is admin exclusive page. Use the page to manage registered users.{" "}
+                  This is admin exclusive page. Use the page to manage registered users.
                 </Typography>
                 <Stack alignItems="center" direction="row" spacing={1}>
                   <Button

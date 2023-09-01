@@ -63,7 +63,6 @@ router.post("/random", async (req, res, next) => {
     Math.floor(Math.random() * 3)
   ];
   const desc = await getRandomMemoryDesc(type.type);
-  console.log(type);
   const response = await fetch(
     `https://api.api-ninjas.com/v1/randomimage?category=${type.imageCategory}`,
     {
@@ -91,7 +90,7 @@ router.post("/random", async (req, res, next) => {
     id: memoryId,
     userId: user.id,
     createdAt,
-    filename,
+    filename: `images/memory-${createdAt}.png`,
     type: type.type,
     title: desc.name,
     desc: desc.desc,
@@ -101,7 +100,6 @@ router.post("/random", async (req, res, next) => {
     await saveBlob(filename, blob);
     await writeData("memories.json", storedData);
   } catch (e) {
-    console.log(e.message);
     return res.status(401).json({ message: e.message });
   }
 

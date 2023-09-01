@@ -48,6 +48,10 @@ const Page = () => {
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
                 <Typography variant="h4">Memories</Typography>
+                <Typography color="neutral.500" variant="body2">
+                  To add new memory, click the add button. You can also let server generate one by
+                  clicking the button "add a memory"
+                </Typography>
                 <Stack alignItems="center" direction="row" spacing={1}>
                   <Button
                     color="inherit"

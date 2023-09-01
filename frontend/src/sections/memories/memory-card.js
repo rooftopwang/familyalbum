@@ -1,8 +1,27 @@
 import PropTypes from "prop-types";
-import ArrowDownOnSquareIcon from "@heroicons/react/24/solid/ArrowDownOnSquareIcon";
 import ClockIcon from "@heroicons/react/24/solid/ClockIcon";
-import { Avatar, Box, Card, CardContent, Divider, Stack, SvgIcon, Typography } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  Divider,
+  Stack,
+  SvgIcon,
+  Typography,
+  TextField,
+} from "@mui/material";
 
+const convertTime = (createdAt) => {
+  const date = new Date(createdAt);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const formattedMonth = month.toString().padStart(2, "0");
+  const formattedDay = day.toString().padStart(2, "0");
+  return `${year}-${formattedMonth}-${formattedDay}`;
+};
 export const MemoryCard = (props) => {
   const { memory } = props;
 
@@ -22,12 +41,31 @@ export const MemoryCard = (props) => {
             pb: 3,
           }}
         >
-          <Avatar src={memory.filename} variant="square" />
+          <Box
+            component="img"
+            sx={{
+              height: 300,
+              width: 300,
+              borderRadius: 1,
+            }}
+            alt="The house from the offer."
+            src={`http://localhost:8000/${memory.filename}`}
+          />
         </Box>
         <Typography align="center" gutterBottom variant="h5">
           {memory.title}
         </Typography>
-        <Typography align="center" variant="body1">
+
+        <Typography
+          variant="body1"
+          sx={{
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical",
+          }}
+        >
           {memory.desc}
         </Typography>
       </CardContent>
@@ -45,12 +83,12 @@ export const MemoryCard = (props) => {
             <ClockIcon />
           </SvgIcon>
           <Typography color="text.secondary" display="inline" variant="body2">
-            {memory.createdAt}
+            {convertTime(memory.createdAt)}
           </Typography>
         </Stack>
         <Stack alignItems="center" direction="row" spacing={1}>
           <SvgIcon color="action" fontSize="small">
-            <ArrowDownOnSquareIcon />
+            <AccountCircleIcon />
           </SvgIcon>
           <Typography color="text.secondary" display="inline" variant="body2">
             {memory.author}
