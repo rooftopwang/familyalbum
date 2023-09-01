@@ -3,18 +3,43 @@ var router = express.Router();
 var fs = require("fs");
 const { v4: generateId } = require("uuid");
 
-var { readData, writeData, getRandomMemoryDesc } = require("../data/util");
+var {
+  readData,
+  writeData,
+  saveBlob,
+  getEmailFromToken,
+  getRandomMemoryDesc,
+} = require("../data/util");
 const { get } = require("../data/user");
 
-/* GET users listing. */
+router.get("/", async (req, res, next) => {
+  const data = await readData("memories.json");
+  const memories = data.memories;
+
+  const usersData = await readData("users.json");
+  const users = usersData.users;
+
+  const dto = memories.map((memory) => {
+    const usersfiltered = users.filter((user) => user.id == memory.userId);
+    const username =
+      usersfiltered == null || usersfiltered.length == 0
+        ? ""
+        : usersfiltered[0].name;
+    return {
+      ...memory,
+      author: username,
+    };
+  });
+
+  res.json(dto);
+});
+
 router.post("/random", async (req, res, next) => {
   const token = req.body.token;
   let user = null;
   try {
-    const obj = JSON.parse(
-      Buffer.from(token.split(".")[1], "base64").toString()
-    );
-    user = await get(obj.email);
+    const email = getEmailFromToken(token);
+    user = await get(email);
   } catch (error) {
     return res.status(401).json({ message: "Authentication failed." });
   }
@@ -38,7 +63,7 @@ router.post("/random", async (req, res, next) => {
     Math.floor(Math.random() * 3)
   ];
   const desc = await getRandomMemoryDesc(type.type);
-
+  console.log(type);
   const response = await fetch(
     `https://api.api-ninjas.com/v1/randomimage?category=${type.imageCategory}`,
     {
@@ -50,21 +75,17 @@ router.post("/random", async (req, res, next) => {
     }
   );
 
-  if (!response.ok) throw new Error("fail to create image. ");
+  if (!response.ok) res.status(401).json({ message: "fail to create image. " });
 
+  // blob
   const blob = await response.blob();
-  const arrayBuffer = await blob.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
   const createdAt = new Date().getTime();
   const filename = `./public/images/memory-${createdAt}.png`;
-  await fs.promises.writeFile(filename, buffer);
 
+  // data entry
   const storedData = await readData("memories.json");
   const memoryId = generateId();
-  if (!storedData.memories) {
-    storedData.memories = [];
-  }
+  if (!storedData.memories) storedData.memories = [];
 
   storedData.memories.push({
     id: memoryId,
@@ -76,9 +97,15 @@ router.post("/random", async (req, res, next) => {
     desc: desc.desc,
   });
 
-  await writeData("memories.json", storedData);
+  try {
+    await saveBlob(filename, blob);
+    await writeData("memories.json", storedData);
+  } catch (e) {
+    console.log(e.message);
+    return res.status(401).json({ message: e.message });
+  }
 
-  res.send(null);
+  return res.sendStatus(200);
 });
 
 module.exports = router;

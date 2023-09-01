@@ -19,6 +19,17 @@ async function writeData(filename, obj) {
   }
 }
 
+async function saveBlob(filename, blob) {
+  const arrayBuffer = await blob.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  await fs.writeFile(filename, buffer);
+}
+
+function getEmailFromToken(token) {
+  return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString())
+    .email;
+}
+
 async function getRandomAvatar() {
   const data = await readData("data.json");
   const avatars = data.newavatars;
@@ -48,6 +59,8 @@ function getRandomPhone() {
 
 exports.readData = readData;
 exports.writeData = writeData;
+exports.saveBlob = saveBlob;
+exports.getEmailFromToken = getEmailFromToken;
 exports.getRandomAvatar = getRandomAvatar;
 exports.getRandomAddress = getRandomAddress;
 exports.getRandomPhone = getRandomPhone;

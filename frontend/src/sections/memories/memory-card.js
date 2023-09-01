@@ -22,13 +22,13 @@ export const MemoryCard = (props) => {
             pb: 3,
           }}
         >
-          <Avatar src={memory.logo} variant="square" />
+          <Avatar src={memory.filename} variant="square" />
         </Box>
         <Typography align="center" gutterBottom variant="h5">
           {memory.title}
         </Typography>
         <Typography align="center" variant="body1">
-          {memory.description}
+          {memory.desc}
         </Typography>
       </CardContent>
       <Box sx={{ flexGrow: 1 }} />
@@ -45,7 +45,7 @@ export const MemoryCard = (props) => {
             <ClockIcon />
           </SvgIcon>
           <Typography color="text.secondary" display="inline" variant="body2">
-            Updated 2hr ago
+            {memory.createdAt}
           </Typography>
         </Stack>
         <Stack alignItems="center" direction="row" spacing={1}>
@@ -53,7 +53,7 @@ export const MemoryCard = (props) => {
             <ArrowDownOnSquareIcon />
           </SvgIcon>
           <Typography color="text.secondary" display="inline" variant="body2">
-            {memory.downloads} Downloads
+            {memory.author}
           </Typography>
         </Stack>
       </Stack>
