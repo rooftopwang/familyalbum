@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
     const usersfiltered = users.filter((user) => user.id == memory.userId);
     const username =
       usersfiltered == null || usersfiltered.length == 0
-        ? ""
+        ? null
         : usersfiltered[0].name;
     return {
       ...memory,
@@ -35,10 +35,19 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/random", async (req, res, next) => {
-  const token = req.body.token;
   let user = null;
+  let email = "";
+
+  if (req.body.randomuser) {
+    const data = await readData("users.json");
+    const emails = data.users.map((user) => user.email);
+    email = emails[Math.floor(Math.random() * emails.length)];
+  } else {
+    const token = req.body.token;
+    email = getEmailFromToken(token);
+  }
+
   try {
-    const email = getEmailFromToken(token);
     user = await get(email);
   } catch (error) {
     return res.status(401).json({ message: "Authentication failed." });

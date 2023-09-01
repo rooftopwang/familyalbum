@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import ClockIcon from "@heroicons/react/24/solid/ClockIcon";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { format } from "date-fns";
 import {
   Avatar,
   Box,
@@ -14,13 +15,7 @@ import {
 } from "@mui/material";
 
 const convertTime = (createdAt) => {
-  const date = new Date(createdAt);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const formattedMonth = month.toString().padStart(2, "0");
-  const formattedDay = day.toString().padStart(2, "0");
-  return `${year}-${formattedMonth}-${formattedDay}`;
+  return format(new Date(createdAt), "MMMM do, yyyy");
 };
 export const MemoryCard = (props) => {
   const { memory } = props;
@@ -91,7 +86,7 @@ export const MemoryCard = (props) => {
             <AccountCircleIcon />
           </SvgIcon>
           <Typography color="text.secondary" display="inline" variant="body2">
-            {memory.author}
+            {memory.author ?? "known author"}
           </Typography>
         </Stack>
       </Stack>

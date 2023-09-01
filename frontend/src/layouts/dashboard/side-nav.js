@@ -24,6 +24,7 @@ export const SideNav = (props) => {
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const handleAddMemory = useCallback(async () => {
+    return;
     try {
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
@@ -33,9 +34,8 @@ export const SideNav = (props) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ token }),
+          body: JSON.stringify({ token, randomuser: true }),
         });
-      else return;
     } catch (err) {
       console.error(err);
     }

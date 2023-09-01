@@ -15,18 +15,41 @@ import {
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { MemoryCard } from "src/sections/memories/memory-card";
 import { MemoriesSearch } from "src/sections/memories/memories-search";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
   const [memories, setMemories] = useState([]);
 
-  useEffect(() => {
-    async function fetchMemories() {
-      const response = await fetch("http://localhost:8000/memory");
-      const data = await response.json();
-      setMemories(data);
-    }
+  const fetchMemories = useCallback(async () => {
+    const response = await fetch("http://localhost:8000/memory");
+    const data = await response.json();
+    setMemories(data);
+  }, []);
 
+  const handleAddMemory = () => {
+    try {
+      const token = window.sessionStorage.getItem("token");
+      const isAuthenticated = token != null && token != "";
+      if (isAuthenticated)
+        fetch("http://localhost:8000/memory/random", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token, randomuser: true }),
+        })
+          .then((res) => {
+            fetchMemories();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
     fetchMemories();
   }, []);
 
@@ -82,6 +105,7 @@ const Page = () => {
                     </SvgIcon>
                   }
                   variant="contained"
+                  onClick={handleAddMemory}
                 >
                   Add
                 </Button>
