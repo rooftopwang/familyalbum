@@ -17,11 +17,29 @@ import { Logo } from "src/components/logo";
 import { Scrollbar } from "src/components/scrollbar";
 import { items } from "./config";
 import { SideNavItem } from "./side-nav-item";
+import { useCallback } from "react";
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const handleAddMemory = useCallback(async () => {
+    try {
+      const token = window.sessionStorage.getItem("token");
+      const isAuthenticated = token != null && token != "";
+      if (isAuthenticated)
+        await fetch("http://localhost:8000/memory", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+      else return;
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
 
   const content = (
     <Scrollbar
@@ -135,10 +153,10 @@ export const SideNav = (props) => {
               </SvgIcon>
             }
             fullWidth
-            href="https://material-kit-pro-react.devias.io/"
             sx={{ mt: 2 }}
             target="_blank"
             variant="contained"
+            onClick={handleAddMemory}
           >
             Add a Memory
           </Button>

@@ -137,7 +137,7 @@ export const AuthProvider = (props) => {
     if (response.status == 422 || response.status == 401) throw new Error(data.message);
     if (!response.ok) throw new Error("Did not pass anthentication. ");
 
-    data.user.avatar = "/assets/avatars/avatar-marcus-finn.png";
+    // data.user.avatar = "/assets/avatars/avatar-marcus-finn.png";
 
     try {
       window.sessionStorage.setItem("token", data.token);

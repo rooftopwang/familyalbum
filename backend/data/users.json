@@ -1,1 +1,84 @@
-{"users":[{"email":"wolfgangwang@hotmail.ca","name":"Wolfgang Wang","password":"$2a$12$Qbm6GhPsGTUotcjfd0w/XetZ2BcjBpdIORt48ZxUEAojgWTfYKVUu","id":"572d0443-d26c-45c1-b762-dd3e58200f10","isAdmin":true,"createdAt":1693519707299,"avatar":"/assets/avatars/avatar-omar-darboe.png","address":{"city":"Atlanta","country":"USA","state":"Georgia","street":"1865  Pleasant Hill Road"},"phone":"647-627-6559"},{"email":"amberyang@gmail.com","name":"Amber Yang","password":"$2a$12$DQXdJxcQHpCmZ9/eMMG9b.JiYThLhR9qRV44LC/I7hv4iZuNzVGYK","id":"a4820921-b32d-4a08-914d-691ef4267dc1","isAdmin":false,"createdAt":1693519754057,"avatar":"/assets/avatars/avatar-omar-darboe.png","address":{"city":"North Canton","country":"USA","state":"Ohio","street":"4894  Lakeland Park Drive"},"phone":"647-630-4718"},{"email":"barackobama@gmail.com","name":"Barack Obama","password":"$2a$12$B2kRragKsSNDCBIK9tlTt.QRtt8jr8XYFfMu7nexDhmay9ugf5x/a","id":"fe50f676-3c43-4b2c-af70-7e7ea2717161","isAdmin":false,"createdAt":1693519797040,"avatar":"/assets/avatars/avatar-siegbert-gottfried.png","address":{"city":"San Diego","country":"USA","state":"California","street":"75247"},"phone":"416-758-828"},{"email":"davidbeckham@gmail.com","name":"David Beckham","password":"$2a$12$Prn5qK7Jz8WDq4tT8JpZCeTYD97Wh5zHw2uzUDQJkOqdFG7pSxy/G","id":"e43f8d50-6ff4-4d9e-8296-2de980683862","isAdmin":false,"createdAt":1693519855957,"avatar":"/assets/avatars/avatar-jie-yan-song.png","address":{"city":"Atlanta","country":"USA","state":"Georgia","street":"1865  Pleasant Hill Road"},"phone":"416-800-1741"},{"email":"guest@familyalbum.com","name":"Guest","password":"$2a$12$ny9x2h8dgmjAAHXQRzeOduCgTdJ/OVVXabknLGtnjuDlhs3XNKuz6","id":"48d2c735-3632-4101-994e-d68c42c45c04","isAdmin":false,"createdAt":1693520630159,"avatar":"/assets/avatars/avatar-penjani-inyene.png","address":{"city":"San Diego","country":"USA","state":"California","street":"75247"},"phone":"647-501-3877"}]}
+{
+  "users": [
+    {
+      "email": "wolfgangwang@hotmail.ca",
+      "name": "Wolfgang Wang",
+      "password": "$2a$12$Qbm6GhPsGTUotcjfd0w/XetZ2BcjBpdIORt48ZxUEAojgWTfYKVUu",
+      "id": "572d0443-d26c-45c1-b762-dd3e58200f10",
+      "isAdmin": true,
+      "createdAt": 1693519707299,
+      "avatar": "/assets/avatars/avatar-omar-darboe.png",
+      "address": {
+        "city": "Atlanta",
+        "country": "USA",
+        "state": "Georgia",
+        "street": "1865  Pleasant Hill Road"
+      },
+      "phone": "647-627-6559"
+    },
+    {
+      "email": "amberyang@gmail.com",
+      "name": "Amber Yang",
+      "password": "$2a$12$DQXdJxcQHpCmZ9/eMMG9b.JiYThLhR9qRV44LC/I7hv4iZuNzVGYK",
+      "id": "a4820921-b32d-4a08-914d-691ef4267dc1",
+      "isAdmin": false,
+      "createdAt": 1693519754057,
+      "avatar": "/assets/avatars/avatar-omar-darboe.png",
+      "address": {
+        "city": "North Canton",
+        "country": "USA",
+        "state": "Ohio",
+        "street": "4894  Lakeland Park Drive"
+      },
+      "phone": "647-630-4718"
+    },
+    {
+      "email": "barackobama@gmail.com",
+      "name": "Barack Obama",
+      "password": "$2a$12$B2kRragKsSNDCBIK9tlTt.QRtt8jr8XYFfMu7nexDhmay9ugf5x/a",
+      "id": "fe50f676-3c43-4b2c-af70-7e7ea2717161",
+      "isAdmin": false,
+      "createdAt": 1693519797040,
+      "avatar": "/assets/avatars/avatar-siegbert-gottfried.png",
+      "address": {
+        "city": "San Diego",
+        "country": "USA",
+        "state": "California",
+        "street": "75247"
+      },
+      "phone": "416-758-828"
+    },
+    {
+      "email": "davidbeckham@gmail.com",
+      "name": "David Beckham",
+      "password": "$2a$12$Prn5qK7Jz8WDq4tT8JpZCeTYD97Wh5zHw2uzUDQJkOqdFG7pSxy/G",
+      "id": "e43f8d50-6ff4-4d9e-8296-2de980683862",
+      "isAdmin": false,
+      "createdAt": 1693519855957,
+      "avatar": "/assets/avatars/avatar-jie-yan-song.png",
+      "address": {
+        "city": "Atlanta",
+        "country": "USA",
+        "state": "Georgia",
+        "street": "1865  Pleasant Hill Road"
+      },
+      "phone": "416-800-1741"
+    },
+    {
+      "email": "guest@familyalbum.com",
+      "name": "Guest",
+      "password": "$2a$12$ny9x2h8dgmjAAHXQRzeOduCgTdJ/OVVXabknLGtnjuDlhs3XNKuz6",
+      "id": "48d2c735-3632-4101-994e-d68c42c45c04",
+      "isAdmin": false,
+      "createdAt": 1693520630159,
+      "avatar": "/assets/avatars/avatar-penjani-inyene.png",
+      "address": {
+        "city": "San Diego",
+        "country": "USA",
+        "state": "California",
+        "street": "75247"
+      },
+      "phone": "647-501-3877"
+    }
+  ]
+}
