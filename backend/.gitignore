@@ -7,3 +7,5 @@
 .DS_Store
 .eslintcache
 /.env
+
+public/images
