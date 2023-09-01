@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import PetsIcon from "@mui/icons-material/Pets";
 import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
-import SurfingIcon from "@mui/icons-material/Surfing";
+import LuggageIcon from "@mui/icons-material/Luggage";
 
 import {
   Box,
@@ -59,27 +59,32 @@ const useChartOptions = (labels) => {
   };
 };
 
-const iconMap = {
-  Pets: (
-    <SvgIcon>
-      <PetsIcon />
-    </SvgIcon>
-  ),
-  Dishes: (
-    <SvgIcon>
-      <LocalPizzaIcon />
-    </SvgIcon>
-  ),
-  Selfie: (
-    <SvgIcon>
-      <SurfingIcon />
-    </SvgIcon>
-  ),
+const iconMapOptions = () => {
+  const theme = useTheme();
+  const iconMaps = {
+    Pets: (
+      <SvgIcon>
+        <PetsIcon sx={{ color: theme.palette.primary.main }} />
+      </SvgIcon>
+    ),
+    Dishes: (
+      <SvgIcon>
+        <LocalPizzaIcon sx={{ color: theme.palette.success.main }} />
+      </SvgIcon>
+    ),
+    Trips: (
+      <SvgIcon>
+        <LuggageIcon sx={{ color: theme.palette.warning.main }} />
+      </SvgIcon>
+    ),
+  };
+  return iconMaps;
 };
 
 export const OverviewMemoryTypes = (props) => {
   const { chartSeries, labels, sx } = props;
   const chartOptions = useChartOptions(labels);
+  const iconMaps = iconMapOptions();
 
   return (
     <Card sx={sx}>
@@ -105,7 +110,7 @@ export const OverviewMemoryTypes = (props) => {
                   alignItems: "center",
                 }}
               >
-                {iconMap[label]}
+                {iconMaps[label]}
                 <Typography sx={{ my: 1 }} variant="h6">
                   {label}
                 </Typography>
