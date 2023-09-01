@@ -19,6 +19,7 @@ import { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
   const [memories, setMemories] = useState([]);
+  const [allowFetch, setAllowFetch] = useState(true);
 
   const fetchMemories = useCallback(async () => {
     const response = await fetch("http://localhost:8000/memory");
@@ -28,6 +29,7 @@ const Page = () => {
 
   const handleAddMemory = () => {
     try {
+      setAllowFetch(false);
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
@@ -38,11 +40,11 @@ const Page = () => {
           },
           body: JSON.stringify({ token, randomuser: true }),
         })
-          .then((res) => {
-            fetchMemories();
-          })
           .catch((err) => {
             console.log(err);
+          })
+          .finally(() => {
+            setAllowFetch(true);
           });
     } catch (err) {
       console.error(err);
@@ -50,8 +52,8 @@ const Page = () => {
   };
 
   useEffect(() => {
-    fetchMemories();
-  }, []);
+    if (allowFetch) fetchMemories();
+  }, [allowFetch]);
 
   return (
     <>
