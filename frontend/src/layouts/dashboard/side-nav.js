@@ -28,7 +28,7 @@ export const SideNav = (props) => {
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
-        await fetch("http://localhost:8000/memory", {
+        await fetch("http://localhost:8000/memory/random", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

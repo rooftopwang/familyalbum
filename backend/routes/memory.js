@@ -3,11 +3,11 @@ var router = express.Router();
 var fs = require("fs");
 const { v4: generateId } = require("uuid");
 
-var { readData, writeData } = require("../data/util");
+var { readData, writeData, getRandomMemoryDesc } = require("../data/util");
 const { get } = require("../data/user");
 
 /* GET users listing. */
-router.post("/", async (req, res, next) => {
+router.post("/random", async (req, res, next) => {
   const token = req.body.token;
   let user = null;
   try {
@@ -19,8 +19,28 @@ router.post("/", async (req, res, next) => {
     return res.status(401).json({ message: "Authentication failed." });
   }
 
+  const types = {
+    PETS: {
+      type: "pets",
+      imageCategory: "wildlife",
+    },
+    DISHES: {
+      type: "dishes",
+      imageCategory: "food",
+    },
+    CITY: {
+      type: "cities",
+      imageCategory: "city",
+    },
+  };
+
+  const type = [types.PETS, types.DISHES, types.CITY][
+    Math.floor(Math.random() * 3)
+  ];
+  const desc = await getRandomMemoryDesc(type.type);
+
   const response = await fetch(
-    "https://api.api-ninjas.com/v1/randomimage?category=nature",
+    `https://api.api-ninjas.com/v1/randomimage?category=${type.imageCategory}`,
     {
       method: "GET",
       headers: {
@@ -51,7 +71,9 @@ router.post("/", async (req, res, next) => {
     userId: user.id,
     createdAt,
     filename,
-    type: ["Pets", "Dishes", "Selfie"][Math.floor(Math.random() * 3)],
+    type: type.type,
+    title: desc.name,
+    desc: desc.desc,
   });
 
   await writeData("memories.json", storedData);

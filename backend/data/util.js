@@ -33,6 +33,13 @@ async function getRandomAddress() {
   return address;
 }
 
+async function getRandomMemoryDesc(category) {
+  const data = await readData("data.json");
+  const feeds = data[category];
+  const feed = feeds[Math.floor(Math.random() * feeds.length)];
+  return feed;
+}
+
 function getRandomPhone() {
   return `${
     Math.floor(Math.random() * 10) % 2 == 1 ? "647" : "416"
@@ -44,3 +51,4 @@ exports.writeData = writeData;
 exports.getRandomAvatar = getRandomAvatar;
 exports.getRandomAddress = getRandomAddress;
 exports.getRandomPhone = getRandomPhone;
+exports.getRandomMemoryDesc = getRandomMemoryDesc;
