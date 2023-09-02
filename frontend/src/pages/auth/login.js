@@ -141,12 +141,19 @@ const Page = () => {
                 <Button fullWidth size="large" sx={{ mt: 3 }} onClick={handleSkip}>
                   Login as guest
                 </Button>
-                <Button fullWidth size="large" sx={{ mt: 3 }} onClick={handleReset}>
-                  Reset Database
-                </Button>
                 <Alert color="primary" severity="info" sx={{ mt: 3 }}>
                   <div>
-                    You can use <b>wolfgangwang@hotmail.ca</b> and password <b>123456</b>
+                    You can use <b>wolfgangwang@hotmail.ca</b> and password <b>123456</b> or
+                    consider{" "}
+                    <Link
+                      component={NextLink}
+                      href="#"
+                      underline="hover"
+                      variant="subtitle2"
+                      onClick={handleReset}
+                    >
+                      Reset Database
+                    </Link>
                   </div>
                 </Alert>
               </form>
