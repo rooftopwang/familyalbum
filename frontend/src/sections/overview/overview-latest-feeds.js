@@ -2,6 +2,7 @@ import { formatDistanceToNow } from "date-fns";
 import PropTypes from "prop-types";
 import ArrowRightIcon from "@heroicons/react/24/solid/ArrowRightIcon";
 import EllipsisVerticalIcon from "@heroicons/react/24/solid/EllipsisVerticalIcon";
+import { useRouter } from "next/navigation";
 import {
   Box,
   Button,
@@ -19,9 +20,7 @@ import {
 
 export const OverviewLatestFeeds = (props) => {
   const { feeds = [], sx } = props;
-
-  console.log("feeds: ");
-  console.log(feeds);
+  const router = useRouter();
 
   return (
     <Card sx={sx}>
@@ -83,6 +82,9 @@ export const OverviewLatestFeeds = (props) => {
           }
           size="small"
           variant="text"
+          onClick={() => {
+            router.push("/memories");
+          }}
         >
           View all
         </Button>

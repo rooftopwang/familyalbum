@@ -1,1 +1,148 @@
-{"users":[{"id":"6b58830d-5801-4981-88a5-db36ba6a863a","name":"Wolfgang Wang","email":"wolfgangwang@hotmail.ca","password":"$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG","address":{"city":"East Theresashire","country":"USA","state":"AK","street":"391 Jennifer Heights"},"isAdmin":true,"createdAt":1693597541105,"avatar":"/assets/avatars/avatar-carson-darrin.png","phone":"647-609-9897"},{"id":"6029de62-09f9-4bb5-93c6-12d432640723","name":"Victor Roberson","email":"patelnicholas@gmail.com","password":"$2a$12$FW6SIGKa17WlkrGXDUYfHe2wO8e9lrfJt9FESuLNeSWBRmXEn/AC.","address":{"city":"South Christopherfort","country":"USA","state":"NM","street":"9681 Victoria Points"},"isAdmin":false,"createdAt":1693597567286,"avatar":"/assets/avatars/avatar-siegbert-gottfried.png","phone":"416-312-1411"},{"id":"f4689f41-e6e7-4c73-89bf-d70307928622","name":"Patricia Wilson","email":"millerjames@yahoo.com","password":"$2a$12$kJftTW/WaW.IEAl0RXtY3eiQg/TkZGq1EFlu4DODJJnGUmA.QchT6","address":{"city":"New Rebecca","country":"USA","state":"WA","street":"16062 Lowe Underpass"},"isAdmin":false,"createdAt":1693597621685,"avatar":"/assets/avatars/avatar-carson-darrin.png","phone":"647-822-3476"},{"id":"022037a2-7ebd-4ba6-93c5-e327223a8323","name":"Charles Vasquez","email":"jennajohnson@gmail.com","password":"$2a$12$8pkHRL2mMOjd/MCKpxHWC.ruzBu72V17kJbBHACFSPjmJsskau.pG","address":{"city":"Port Kennethland","country":"USA","state":"NV","street":"1718 Tracy Tunnel Apt. 469"},"isAdmin":false,"createdAt":1693597898345,"avatar":"/assets/avatars/avatar-penjani-inyene.png","phone":"416-535-3309"},{"id":"db09d675-3193-4a2f-8f22-6465381eb608","name":"Larry Jackson","email":"lisayates@yahoo.com","password":"$2a$12$aOz0BL.8WtGqaRcXAiQOUOQJqIkq/zQjQM91k7d9GSPrKday4U7IC","address":{"city":"Johnsontown","country":"USA","state":"ME","street":"771 Johnson Ports"},"isAdmin":false,"createdAt":1693597900556,"avatar":"/assets/avatars/avatar-siegbert-gottfried.png","phone":"416-534-9025"},{"id":"f02bbc4f-775c-4c00-a494-4d3ecf4c96b6","name":"Sonya Escobar","email":"rossrobert@gmail.com","password":"$2a$12$xftz2maptQS0Ab115toy2.wMX3v/sEhdOd3eFlHpHimdivVH9swLe","address":{"city":"East Ryanchester","country":"USA","state":"HI","street":"2587 Samantha Loop"},"isAdmin":false,"createdAt":1693598986275,"avatar":"/assets/avatars/avatar-iulia-albu.png","phone":"647-906-6863"},{"id":"b0286914-b0b8-4421-8213-c402ad9629c1","name":"Anna Miller","email":"robert29@yahoo.com","password":"$2a$12$h6GB0UJw/GFvQlmFDUnSLu4kQV2PYMbdgiPbFW.qYMzThDAVn75AS","address":{"city":"New Jake","country":"USA","state":"WV","street":"644 Macias Lights Apt. 087"},"isAdmin":false,"createdAt":1693598989577,"avatar":"/assets/avatars/avatar-miron-vitold.png","phone":"647-86-8769"},{"id":"a955ad9d-7bb4-4184-8f54-106159854914","name":"Lynn Hanna","email":"nicholas39@yahoo.com","password":"$2a$12$eOeOl4P8wrAYj82goQj4mOspjk4n7NAdjRQ3jGhe/0Anch6EIpaJO","address":{"city":"Banksberg","country":"USA","state":"AZ","street":"90813 Rodriguez Gateway"},"isAdmin":false,"createdAt":1693600972056,"avatar":"/assets/avatars/avatar-jie-yan-song.png","phone":"647-602-187"},{"id":"6bc43dba-8780-4a43-a36c-2d19758507fc","name":"Michael Davis","email":"estevenson@gmail.com","password":"$2a$12$LNXA25sLiAEsGI1cIvlu4eWfL/02h9lSVoCr2B34gNR/fdocORi5S","address":{"city":"Jonathanport","country":"USA","state":"MO","street":"6862 Bass Junctions Apt. 620"},"isAdmin":false,"createdAt":1693600979759,"avatar":"/assets/avatars/avatar-siegbert-gottfried.png","phone":"647-871-3247"}]}
+{
+  "users": [
+    {
+      "id": "6b58830d-5801-4981-88a5-db36ba6a863a",
+      "name": "Wolfgang Wang",
+      "email": "wolfgangwang@hotmail.ca",
+      "password": "$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG",
+      "address": {
+        "city": "East Theresashire",
+        "country": "USA",
+        "state": "AK",
+        "street": "391 Jennifer Heights"
+      },
+      "isAdmin": true,
+      "createdAt": 1693597541105,
+      "avatar": "/assets/avatars/avatar-carson-darrin.png",
+      "phone": "647-609-9897"
+    },
+    {
+      "id": "6029de62-09f9-4bb5-93c6-12d432640723",
+      "name": "Victor Roberson",
+      "email": "patelnicholas@gmail.com",
+      "password": "$2a$12$FW6SIGKa17WlkrGXDUYfHe2wO8e9lrfJt9FESuLNeSWBRmXEn/AC.",
+      "address": {
+        "city": "South Christopherfort",
+        "country": "USA",
+        "state": "NM",
+        "street": "9681 Victoria Points"
+      },
+      "isAdmin": false,
+      "createdAt": 1693597567286,
+      "avatar": "/assets/avatars/avatar-siegbert-gottfried.png",
+      "phone": "416-312-1411"
+    },
+    {
+      "id": "f4689f41-e6e7-4c73-89bf-d70307928622",
+      "name": "Patricia Wilson",
+      "email": "millerjames@yahoo.com",
+      "password": "$2a$12$kJftTW/WaW.IEAl0RXtY3eiQg/TkZGq1EFlu4DODJJnGUmA.QchT6",
+      "address": {
+        "city": "New Rebecca",
+        "country": "USA",
+        "state": "WA",
+        "street": "16062 Lowe Underpass"
+      },
+      "isAdmin": false,
+      "createdAt": 1693597621685,
+      "avatar": "/assets/avatars/avatar-carson-darrin.png",
+      "phone": "647-822-3476"
+    },
+    {
+      "id": "022037a2-7ebd-4ba6-93c5-e327223a8323",
+      "name": "Charles Vasquez",
+      "email": "jennajohnson@gmail.com",
+      "password": "$2a$12$8pkHRL2mMOjd/MCKpxHWC.ruzBu72V17kJbBHACFSPjmJsskau.pG",
+      "address": {
+        "city": "Port Kennethland",
+        "country": "USA",
+        "state": "NV",
+        "street": "1718 Tracy Tunnel Apt. 469"
+      },
+      "isAdmin": false,
+      "createdAt": 1693597898345,
+      "avatar": "/assets/avatars/avatar-penjani-inyene.png",
+      "phone": "416-535-3309"
+    },
+    {
+      "id": "db09d675-3193-4a2f-8f22-6465381eb608",
+      "name": "Larry Jackson",
+      "email": "lisayates@yahoo.com",
+      "password": "$2a$12$aOz0BL.8WtGqaRcXAiQOUOQJqIkq/zQjQM91k7d9GSPrKday4U7IC",
+      "address": {
+        "city": "Johnsontown",
+        "country": "USA",
+        "state": "ME",
+        "street": "771 Johnson Ports"
+      },
+      "isAdmin": false,
+      "createdAt": 1693597900556,
+      "avatar": "/assets/avatars/avatar-siegbert-gottfried.png",
+      "phone": "416-534-9025"
+    },
+    {
+      "id": "f02bbc4f-775c-4c00-a494-4d3ecf4c96b6",
+      "name": "Sonya Escobar",
+      "email": "rossrobert@gmail.com",
+      "password": "$2a$12$xftz2maptQS0Ab115toy2.wMX3v/sEhdOd3eFlHpHimdivVH9swLe",
+      "address": {
+        "city": "East Ryanchester",
+        "country": "USA",
+        "state": "HI",
+        "street": "2587 Samantha Loop"
+      },
+      "isAdmin": false,
+      "createdAt": 1693598986275,
+      "avatar": "/assets/avatars/avatar-iulia-albu.png",
+      "phone": "647-906-6863"
+    },
+    {
+      "id": "b0286914-b0b8-4421-8213-c402ad9629c1",
+      "name": "Anna Miller",
+      "email": "robert29@yahoo.com",
+      "password": "$2a$12$h6GB0UJw/GFvQlmFDUnSLu4kQV2PYMbdgiPbFW.qYMzThDAVn75AS",
+      "address": {
+        "city": "New Jake",
+        "country": "USA",
+        "state": "WV",
+        "street": "644 Macias Lights Apt. 087"
+      },
+      "isAdmin": false,
+      "createdAt": 1693598989577,
+      "avatar": "/assets/avatars/avatar-miron-vitold.png",
+      "phone": "647-86-8769"
+    },
+    {
+      "id": "a955ad9d-7bb4-4184-8f54-106159854914",
+      "name": "Lynn Hanna",
+      "email": "nicholas39@yahoo.com",
+      "password": "$2a$12$eOeOl4P8wrAYj82goQj4mOspjk4n7NAdjRQ3jGhe/0Anch6EIpaJO",
+      "address": {
+        "city": "Banksberg",
+        "country": "USA",
+        "state": "AZ",
+        "street": "90813 Rodriguez Gateway"
+      },
+      "isAdmin": false,
+      "createdAt": 1693600972056,
+      "avatar": "/assets/avatars/avatar-jie-yan-song.png",
+      "phone": "647-602-187"
+    },
+    {
+      "id": "6bc43dba-8780-4a43-a36c-2d19758507fc",
+      "name": "Michael Davis",
+      "email": "estevenson@gmail.com",
+      "password": "$2a$12$LNXA25sLiAEsGI1cIvlu4eWfL/02h9lSVoCr2B34gNR/fdocORi5S",
+      "address": {
+        "city": "Jonathanport",
+        "country": "USA",
+        "state": "MO",
+        "street": "6862 Bass Junctions Apt. 620"
+      },
+      "isAdmin": false,
+      "createdAt": 1693600979759,
+      "avatar": "/assets/avatars/avatar-siegbert-gottfried.png",
+      "phone": "647-871-3247"
+    }
+  ]
+}
