@@ -17,7 +17,7 @@ import {
   SvgIcon,
 } from "@mui/material";
 
-export const OverviewLatestProducts = (props) => {
+export const OverviewLatestFeeds = (props) => {
   const { feeds = [], sx } = props;
 
   console.log("feeds: ");
@@ -91,7 +91,7 @@ export const OverviewLatestProducts = (props) => {
   );
 };
 
-OverviewLatestProducts.propTypes = {
+OverviewLatestFeeds.propTypes = {
   feeds: PropTypes.array,
   sx: PropTypes.object,
 };

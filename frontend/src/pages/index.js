@@ -5,7 +5,7 @@ import { Box, Container, Unstable_Grid2 as Grid } from "@mui/material";
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { OverviewBudget } from "src/sections/overview/overview-budget";
 import { OverviewLatestOrders } from "src/sections/overview/overview-latest-orders";
-import { OverviewLatestProducts } from "src/sections/overview/overview-latest-products";
+import { OverviewLatestFeeds } from "src/sections/overview/overview-latest-feeds";
 import { OverviewActivities } from "src/sections/overview/overview-activities";
 import { OverviewTasksProgress } from "src/sections/overview/overview-tasks-progress";
 import { OverviewTotalCustomers } from "src/sections/overview/overview-total-customers";
@@ -63,7 +63,7 @@ const Page = () => {
               <OverviewTotalProfit sx={{ height: "100%" }} value="$15k" />
             </Grid>
             <Grid xs={12} md={6} lg={4}>
-              <OverviewLatestProducts feeds={state.feeds} sx={{ height: "100%" }} />
+              <OverviewLatestFeeds feeds={state.feeds} sx={{ height: "100%" }} />
             </Grid>
             <Grid xs={12} md={12} lg={8}>
               <OverviewLatestOrders
