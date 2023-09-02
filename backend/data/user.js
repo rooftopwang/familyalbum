@@ -6,7 +6,6 @@ const {
   readData,
   writeData,
   getRandomAvatar,
-  getRandomAddress,
   getRandomPhone,
 } = require("./util");
 
