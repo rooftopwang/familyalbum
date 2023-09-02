@@ -30,6 +30,7 @@ const Page = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [inAddingRandom, setInAddingRandom] = useState(false);
   const users = useUsers(page, rowsPerPage, data);
   const usersIds = useUserIds(users);
   const usersSelection = useSelection(usersIds);
@@ -48,7 +49,9 @@ const Page = () => {
     setData(resData);
   }, []);
 
-  const handleAdd = () => {
+  const handleAdd = (event) => {
+    event.preventDefault();
+    setInAddingRandom(true);
     fetch("http://localhost:8000/auth/random", {
       method: "POST",
     })
@@ -57,6 +60,9 @@ const Page = () => {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setInAddingRandom(false);
       });
   };
 
@@ -115,9 +121,10 @@ const Page = () => {
                     </SvgIcon>
                   }
                   variant="contained"
+                  disabled={inAddingRandom}
                   onClick={handleAdd}
                 >
-                  Add
+                  {inAddingRandom ? "Processing" : "Add"}
                 </Button>
               </div>
             </Stack>

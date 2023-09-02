@@ -14,6 +14,9 @@ router.get("/statistics", async function (req, res, next) {
 });
 
 router.post("/deleteall", async function (req, res, next) {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000);
+  });
   await deleteALlContent();
   res.sendStatus(200);
 });

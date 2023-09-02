@@ -19,7 +19,7 @@ import { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
   const [memories, setMemories] = useState([]);
-  const [allowFetch, setAllowFetch] = useState(true);
+  const [inAdding, setInAdding] = useState(false);
 
   const fetchMemories = useCallback(async () => {
     const response = await fetch("http://localhost:8000/memory");
@@ -29,7 +29,7 @@ const Page = () => {
 
   const handleAddMemory = () => {
     try {
-      setAllowFetch(false);
+      setInAdding(true);
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
@@ -44,7 +44,7 @@ const Page = () => {
             console.log(err);
           })
           .finally(() => {
-            setAllowFetch(true);
+            setInAdding(false);
           });
     } catch (err) {
       console.error(err);
@@ -52,8 +52,8 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (allowFetch) fetchMemories();
-  }, [allowFetch]);
+    if (!inAdding) fetchMemories();
+  }, [inAdding]);
 
   return (
     <>
@@ -108,8 +108,9 @@ const Page = () => {
                   }
                   variant="contained"
                   onClick={handleAddMemory}
+                  disabled={inAdding}
                 >
-                  Add
+                  {inAdding ? "Processing" : "Add"}
                 </Button>
               </div>
             </Stack>

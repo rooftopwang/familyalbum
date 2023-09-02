@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import {
   Box,
   Button,
@@ -15,14 +15,21 @@ import {
 } from "@mui/material";
 
 export const SettingsMisc = () => {
+  const [inDeletingAll, setInDeletingAll] = useState(false);
   const handleDeleteAll = (event) => {
     event.preventDefault();
+    setInDeletingAll(true);
     fetch("http://localhost:8000/deleteall", {
       method: "POST",
-    }).catch((err) => {
-      console.log(err);
-    });
+    })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setInDeletingAll(false);
+      });
   };
+
   return (
     <Card>
       <CardHeader subheader="Manage Content and Other Settings" title="Misc Settings" />
@@ -37,8 +44,8 @@ export const SettingsMisc = () => {
           </Grid>
           <Grid item xs={12} md={2} justifyContent="flex-end" alignItems="flex-end">
             <CardActions sx={{ justifyContent: "flex-end" }}>
-              <Button variant="contained" onClick={handleDeleteAll}>
-                Delete
+              <Button variant="contained" disabled={inDeletingAll} onClick={handleDeleteAll}>
+                {inDeletingAll ? "Processing" : "Delete"}
               </Button>
             </CardActions>
           </Grid>

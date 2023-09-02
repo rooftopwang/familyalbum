@@ -56,7 +56,7 @@ export const SettingsPassword = () => {
                 />
               </Stack>
             </Grid>
-            <Grid item xs={12} wrap="wrap">
+            <Grid item xs={12}>
               <Divider />
               <CardActions sx={{ justifyContent: "flex-end" }}>
                 <Button variant="contained">Update</Button>
