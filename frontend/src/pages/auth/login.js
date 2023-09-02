@@ -54,6 +54,14 @@ const Page = () => {
     router.push("/");
   }, [auth, router]);
 
+  const handleReset = useCallback((event) => {
+    event.preventDefault();
+    fetch("http://localhost:8000/deleteall", {
+      method: "POST",
+    }).catch((err) => {
+      console.log(err);
+    });
+  });
   return (
     <>
       <Head>
@@ -132,6 +140,9 @@ const Page = () => {
                 </Button>
                 <Button fullWidth size="large" sx={{ mt: 3 }} onClick={handleSkip}>
                   Login as guest
+                </Button>
+                <Button fullWidth size="large" sx={{ mt: 3 }} onClick={handleReset}>
+                  Reset Database
                 </Button>
                 <Alert color="primary" severity="info" sx={{ mt: 3 }}>
                   <div>

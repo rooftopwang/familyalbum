@@ -1,9 +1,10 @@
-const fs = require("node:fs/promises");
+const fs = require("node:fs");
+const path = require("path");
 
 async function readData(filename) {
   try {
     filename = `data/${filename}`;
-    const data = await fs.readFile(filename, "utf8");
+    const data = await fs.promises.readFile(filename, "utf8");
     return JSON.parse(data);
   } catch (e) {
     return {};
@@ -13,16 +14,58 @@ async function readData(filename) {
 async function writeData(filename, obj) {
   filename = `data/${filename}`;
   try {
-    await fs.writeFile(filename, JSON.stringify(obj));
+    await fs.promises.writeFile(filename, JSON.stringify(obj));
   } catch (e) {
     // to-do: handle error
   }
 }
 
+async function deleteALlContent() {
+  let users, admins;
+  try {
+    users = (await readData("users.json")).users;
+    admins = users.filter((user) => user.isAdmin === true);
+  } catch (err) {
+    admins = [
+      {
+        id: "6b58830d-5801-4981-88a5-db36ba6a863a",
+        name: "Wolfgang Wang",
+        email: "wolfgangwang@hotmail.ca",
+        password:
+          "$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG",
+        address: {
+          city: "East Theresashire",
+          country: "USA",
+          state: "AK",
+          street: "391 Jennifer Heights",
+        },
+        isAdmin: true,
+        createdAt: 1693597541105,
+        avatar: "/assets/avatars/avatar-carson-darrin.png",
+        phone: "647-609-9897",
+      },
+    ];
+  }
+
+  writeData("users.json", { users: admins });
+  writeData("memories.json", { memories: [] });
+
+  const directory = "public/images";
+  fs.readdir(directory, (err, files) => {
+    if (err) throw err;
+
+    for (const file of files) {
+      fs.unlink(path.join(directory, file), (err) => {
+        if (err) throw err;
+      });
+    }
+  });
+}
+
 async function saveBlob(filename, blob) {
   const arrayBuffer = await blob.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
-  await fs.writeFile(filename, buffer);
+  await fs.promises.writeFile(filename, buffer);
 }
 
 function getEmailFromToken(token) {
@@ -91,6 +134,7 @@ async function getRandomMemoryDesc(category) {
 exports.readData = readData;
 exports.writeData = writeData;
 exports.saveBlob = saveBlob;
+exports.deleteALlContent = deleteALlContent;
 exports.getEmailFromToken = getEmailFromToken;
 exports.getRandomAvatar = getRandomAvatar;
 exports.getRandomUser = getRandomUser;

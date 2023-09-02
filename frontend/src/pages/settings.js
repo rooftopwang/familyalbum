@@ -1,28 +1,26 @@
-import Head from 'next/head';
-import { Box, Container, Stack, Typography } from '@mui/material';
-import { SettingsNotifications } from 'src/sections/settings/settings-notifications';
-import { SettingsPassword } from 'src/sections/settings/settings-password';
-import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
+import Head from "next/head";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { SettingsNotifications } from "src/sections/settings/settings-notifications";
+import { SettingsPassword } from "src/sections/settings/settings-password";
+import { SettingsMisc } from "src/sections/settings/settings-misc";
+import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 
 const Page = () => (
   <>
     <Head>
-      <title>
-        Settings | FamilyAlbum
-      </title>
+      <title>Settings | FamilyAlbum</title>
     </Head>
     <Box
       component="main"
       sx={{
         flexGrow: 1,
-        py: 8
+        py: 8,
       }}
     >
       <Container maxWidth="lg">
         <Stack spacing={3}>
-          <Typography variant="h4">
-            Settings
-          </Typography>
+          <Typography variant="h4">Settings</Typography>
+          <SettingsMisc />
           <SettingsNotifications />
           <SettingsPassword />
         </Stack>
@@ -31,10 +29,6 @@ const Page = () => (
   </>
 );
 
-Page.getLayout = (page) => (
-  <DashboardLayout>
-    {page}
-  </DashboardLayout>
-);
+Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;

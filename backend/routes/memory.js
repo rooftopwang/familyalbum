@@ -14,7 +14,7 @@ const { get } = require("../data/user");
 
 router.get("/", async (req, res, next) => {
   const data = await readData("memories.json");
-  const memories = data.memories;
+  const memories = data.memories || [];
 
   const usersData = await readData("users.json");
   const users = usersData.users;

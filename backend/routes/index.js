@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var { getStatistics } = require("../data/statistics");
+var { deleteALlContent } = require("../data/util");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -12,4 +13,8 @@ router.get("/statistics", async function (req, res, next) {
   res.send(dtos);
 });
 
+router.post("/deleteall", async function (req, res, next) {
+  await deleteALlContent();
+  res.sendStatus(200);
+});
 module.exports = router;
