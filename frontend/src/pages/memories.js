@@ -33,7 +33,7 @@ const Page = () => {
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
-        fetch("http://localhost:8000/memory/random", {
+        fetch("http://localhost:8000/dev/randommemory", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

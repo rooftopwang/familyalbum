@@ -56,7 +56,7 @@ const Page = () => {
 
   const handleReset = useCallback((event) => {
     event.preventDefault();
-    fetch("http://localhost:8000/deleteall", {
+    fetch("http://localhost:8000/dev/deleteall", {
       method: "POST",
     }).catch((err) => {
       console.log(err);

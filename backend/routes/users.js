@@ -1,15 +1,10 @@
 var express = require("express");
 var router = express.Router();
-var { readData } = require("../data/util");
+var { getAllUsers } = require("../data/user");
 
 /* GET users listing. */
 router.get("/", async (req, res, next) => {
-  var data = await readData("users.json");
-  var users = data.users.map((user) => {
-    delete user.password;
-    return user;
-  });
-
+  const users = await getAllUsers();
   res.send(users);
 });
 

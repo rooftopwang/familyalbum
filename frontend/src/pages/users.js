@@ -52,7 +52,7 @@ const Page = () => {
   const handleAdd = (event) => {
     event.preventDefault();
     setInAddingRandom(true);
-    fetch("http://localhost:8000/auth/random", {
+    fetch("http://localhost:8000/dev/randomuser", {
       method: "POST",
     })
       .then((res) => {
