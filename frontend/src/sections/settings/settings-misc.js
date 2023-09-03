@@ -35,8 +35,11 @@ export const SettingsMisc = () => {
   const handleFillRandom = (event) => {
     event.preventDefault();
     setInFillingRandom(true);
-    fetch("http://localhost:8000/fillrandom", {
+    fetch("http://localhost:8000/dev/fillrandom", {
       method: "POST",
+      body: {
+        howmany: 6,
+      },
     })
       .catch((err) => {
         console.log(err);

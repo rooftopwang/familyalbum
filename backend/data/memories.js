@@ -49,5 +49,22 @@ const addRandomMemory = async (token, randomuser) => {
   await writeData("memories.json", storedData);
 };
 
+const addMultipleRandomMemories = async (howmany = 6) => {
+  const users = (await readData("users.json")).users;
+  const memoryStore = await readData("memories.json");
+
+  const emails = users.map((user) => user.email);
+  memoryStore.memories = memoryStore.memories || [];
+  let i = 0;
+  while (i < 6) {
+    i += 1;
+    const email = emails[Math.floor(Math.random() * emails.length)];
+    const user = await get(email);
+    const randomMemory = await getRandomMemory(user);
+    memoryStore.memories.push(randomMemory);
+  }
+  await writeData("memories.json", memoryStore);
+};
 exports.getMemories = getMemories;
 exports.addRandomMemory = addRandomMemory;
+exports.addMultipleRandomMemories = addMultipleRandomMemories;

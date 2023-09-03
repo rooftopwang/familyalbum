@@ -110,24 +110,23 @@ async function getRandomUser() {
     return await getRandomUser();
   }
 }
+const MEMORY_TYPES = {
+  PETS: {
+    type: "pets",
+    imageCategory: "wildlife",
+  },
+  DISHES: {
+    type: "dishes",
+    imageCategory: "food",
+  },
+  CITY: {
+    type: "cities",
+    imageCategory: "city",
+  },
+};
 
 async function getRandomMemory(user) {
-  const types = {
-    PETS: {
-      type: "pets",
-      imageCategory: "wildlife",
-    },
-    DISHES: {
-      type: "dishes",
-      imageCategory: "food",
-    },
-    CITY: {
-      type: "cities",
-      imageCategory: "city",
-    },
-  };
-
-  const type = [types.PETS, types.DISHES, types.CITY][
+  const type = [MEMORY_TYPES.PETS, MEMORY_TYPES.DISHES, MEMORY_TYPES.CITY][
     Math.floor(Math.random() * 3)
   ];
   const desc = await getRandomMemoryDesc(type.type);

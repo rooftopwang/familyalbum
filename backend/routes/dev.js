@@ -1,7 +1,10 @@
 var express = require("express");
 var router = express.Router();
-const { add, addMultiple } = require("../data/user");
-const { addRandomMemory } = require("../data/memories");
+const { add, addMultipleRandomUsers } = require("../data/user");
+const {
+  addRandomMemory,
+  addMultipleRandomMemories,
+} = require("../data/memories");
 const { createJSONToken } = require("../util/auth");
 const { getRandomUser, deleteALlContent } = require("../data/util");
 
@@ -39,20 +42,14 @@ router.post("/deleteall", async function (req, res, next) {
 router.post("/fillrandom", async function (req, res, next) {
   const howmany = req.body.howmany || 6;
 
-  // add new users
-  const newUsers = [];
-  let i = 0;
-  while (i < howmany) {
-    const newuser = await getRandomUser();
-    newUsers.push(newuser);
-  }
-
-  // add new memories
-
   try {
-    await createMultiple(newUsers);
+    await addMultipleRandomUsers(howmany);
+    await addMultipleRandomMemories(howmany);
     res.sendStatus(200);
   } catch (err) {
+    console.log("inside /fillrandom: ");
+    console.log(err);
+    console.log("inside /fillrandom end. ");
     res.status(500).send(err);
   }
 });

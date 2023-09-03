@@ -7,6 +7,7 @@ const {
   writeData,
   getRandomAvatar,
   getRandomPhone,
+  getRandomUser,
 } = require("./util");
 
 async function add(data) {
@@ -34,13 +35,14 @@ async function add(data) {
   return { id: userId, email: data.email };
 }
 
-async function addMultiple(newUsers) {
+async function addMultipleRandomUsers(howmany) {
   const storedData = await readData("users.json");
-  if (!storedData.users) {
-    storedData.users = [];
-  }
+  storedData.users = storedData.users || [];
 
-  newUsers.foreach(async (newUser) => {
+  let i = 0;
+  while (i < howmany) {
+    i += 1;
+    const newUser = await getRandomUser();
     const userId = generateId();
     const hashedPw = await hash(newUser.password, 12);
     const avatar = await getRandomAvatar();
@@ -55,7 +57,7 @@ async function addMultiple(newUsers) {
       phone,
       password: hashedPw,
     });
-  });
+  }
 
   await writeData("users.json", storedData);
   return;
@@ -87,5 +89,5 @@ async function getAllUsers() {
 
 exports.add = add;
 exports.get = get;
-exports.addMultiple = addMultiple;
+exports.addMultipleRandomUsers = addMultipleRandomUsers;
 exports.getAllUsers = getAllUsers;
