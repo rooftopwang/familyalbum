@@ -2,6 +2,7 @@ import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import PropTypes from "prop-types";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import CloudIcon from "@mui/icons-material/Cloud";
 import ChevronUpDownIcon from "@heroicons/react/24/solid/ChevronUpDownIcon";
 import {
   Box,
@@ -18,24 +19,35 @@ import { Scrollbar } from "src/components/scrollbar";
 import { items } from "./config";
 import { SideNavItem } from "./side-nav-item";
 import { useCallback } from "react";
+import { useGlobalContext } from "../../contexts/global-context";
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const globalContext = useGlobalContext();
+
   const handleAddMemory = useCallback(async () => {
-    return;
+    if (globalContext.isSideNavAddingMemory) return;
+    globalContext.setSideNavAddingMemory(true);
+
     try {
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
-        await fetch("http://localhost:8000/memory/random", {
+        fetch("http://localhost:8000/memory/random", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ token, randomuser: true }),
-        });
+        })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            globalContext.setSideNavAddingMemory(false);
+          });
     } catch (err) {
       console.error(err);
     }
@@ -143,13 +155,13 @@ export const SideNav = (props) => {
             Haven't Add One Today?
           </Typography>
           <Typography color="neutral.500" variant="body2">
-            Let's Upload Your First Memory
+            Add a random memory
           </Typography>
           <Button
             component="a"
             endIcon={
               <SvgIcon fontSize="small">
-                <AddAPhotoIcon />
+                {globalContext.isSideNavAddingMemory ? <CloudIcon /> : <AddAPhotoIcon />}
               </SvgIcon>
             }
             fullWidth
@@ -158,7 +170,7 @@ export const SideNav = (props) => {
             variant="contained"
             onClick={handleAddMemory}
           >
-            Add a Memory
+            {globalContext.isSideNavAddingMemory ? "Processing" : "Add a Memory"}
           </Button>
         </Box>
       </Box>

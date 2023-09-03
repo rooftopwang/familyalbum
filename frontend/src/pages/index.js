@@ -11,6 +11,7 @@ import { OverviewTasksProgress } from "src/sections/overview/overview-tasks-prog
 import { OverviewTotalCustomers } from "src/sections/overview/overview-total-customers";
 import { OverviewTotalProfit } from "src/sections/overview/overview-total-profit";
 import { OverviewMemoryTypes } from "src/sections/overview/overview-memory-types";
+import { useGlobalContext } from "../contexts/global-context";
 
 const now = new Date();
 
@@ -19,6 +20,7 @@ const Page = () => {
     feeds: [],
     types: [0, 0, 0],
   });
+  const globalContext = useGlobalContext();
 
   useEffect(() => {
     fetch("http://localhost:8000/statistics")
@@ -29,7 +31,7 @@ const Page = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [globalContext.isSideNavAddingMemory]);
 
   return (
     <>
