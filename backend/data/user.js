@@ -39,25 +39,27 @@ async function addMultipleRandomUsers(howmany) {
   const storedData = await readData("users.json");
   storedData.users = storedData.users || [];
 
-  let i = 0;
-  while (i < howmany) {
-    i += 1;
-    const newUser = await getRandomUser();
-    const userId = generateId();
-    const hashedPw = await hash(newUser.password, 12);
-    const avatar = await getRandomAvatar();
-    const phone = getRandomPhone();
+  const tasks = Array(howmany).fill(0);
+  const newUsers = await Promise.all(
+    tasks.map(async (_) => {
+      const newUser = await getRandomUser();
+      const userId = generateId();
+      const hashedPw = await hash(newUser.password, 12);
+      const avatar = await getRandomAvatar();
+      const phone = getRandomPhone();
+      return {
+        id: userId,
+        ...newUser,
+        isAdmin: false,
+        createdAt: new Date().getTime(),
+        avatar,
+        phone,
+        password: hashedPw,
+      };
+    })
+  );
 
-    storedData.users.push({
-      id: userId,
-      ...newUser,
-      isAdmin: false,
-      createdAt: new Date().getTime(),
-      avatar,
-      phone,
-      password: hashedPw,
-    });
-  }
+  storedData.users = [...storedData.users, ...newUsers];
 
   await writeData("users.json", storedData);
   return;

@@ -24,7 +24,7 @@ export const OverviewLatestFeeds = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Feeds" />
+      <CardHeader title="Feeds" />
       <List>
         {feeds.map((feed, index) => {
           if (index >= 5) return;

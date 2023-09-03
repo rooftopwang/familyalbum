@@ -55,14 +55,18 @@ const addMultipleRandomMemories = async (howmany = 6) => {
 
   const emails = users.map((user) => user.email);
   memoryStore.memories = memoryStore.memories || [];
-  let i = 0;
-  while (i < 6) {
-    i += 1;
-    const email = emails[Math.floor(Math.random() * emails.length)];
-    const user = await get(email);
-    const randomMemory = await getRandomMemory(user);
-    memoryStore.memories.unshift(randomMemory);
-  }
+
+  const tasks = Array(howmany).fill(0);
+  const newMemories = await Promise.all(
+    tasks.map(async (_) => {
+      const email = emails[Math.floor(Math.random() * emails.length)];
+      const user = await get(email);
+      const randomMemory = await getRandomMemory(user);
+      return randomMemory;
+    })
+  );
+  memoryStore.memories = [...memoryStore.memories, ...newMemories];
+
   await writeData("memories.json", memoryStore);
 };
 exports.getMemories = getMemories;

@@ -43,8 +43,11 @@ router.post("/fillrandom", async function (req, res, next) {
   const howmany = req.body.howmany || 6;
 
   try {
-    await addMultipleRandomUsers(howmany);
-    await addMultipleRandomMemories(howmany);
+    const tasks = [
+      addMultipleRandomUsers(howmany),
+      addMultipleRandomMemories(howmany),
+    ];
+    await Promise.all(tasks);
     res.sendStatus(200);
   } catch (err) {
     console.log("inside /fillrandom: ");
