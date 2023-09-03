@@ -16,10 +16,12 @@ import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { MemoryCard } from "src/sections/memories/memory-card";
 import { MemoriesSearch } from "src/sections/memories/memories-search";
 import { useCallback, useEffect, useState } from "react";
+import { useGlobalContext } from "../contexts/global-context";
 
 const Page = () => {
   const [memories, setMemories] = useState([]);
   const [inAdding, setInAdding] = useState(false);
+  const globalContext = useGlobalContext();
 
   const fetchMemories = useCallback(async () => {
     const response = await fetch("http://localhost:8000/memory");
@@ -52,8 +54,8 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (!inAdding) fetchMemories();
-  }, [inAdding]);
+    if (!inAdding && !globalContext.isSideNavAddingMemory) fetchMemories();
+  }, [inAdding, globalContext.isSideNavAddingMemory]);
 
   return (
     <>
