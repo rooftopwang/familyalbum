@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const { get, add, addMultiple } = require("../data/user");
+const { add, addMultiple } = require("../data/user");
 const { addRandomMemory } = require("../data/memories");
 const { createJSONToken } = require("../util/auth");
 const { getRandomUser, deleteALlContent } = require("../data/util");
@@ -22,7 +22,7 @@ router.post("/randommemory", async (req, res, next) => {
   try {
     await addRandomMemory(req.body.token, req.body.randomuser);
   } catch (err) {
-    return res.status(401).json({ message: e.message });
+    return res.status(500).json({ message: err });
   }
 
   return res.sendStatus(200);
@@ -50,7 +50,7 @@ router.post("/fillrandom", async function (req, res, next) {
   // add new memories
 
   try {
-    await addMultiple(newUsers);
+    await createMultiple(newUsers);
     res.sendStatus(200);
   } catch (err) {
     res.status(500).send(err);

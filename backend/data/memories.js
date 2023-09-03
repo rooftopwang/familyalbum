@@ -1,12 +1,10 @@
-const { v4: generateId } = require("uuid");
-const { get } = require("../data/user");
+const { get } = require("./user");
 const {
   readData,
   writeData,
-  saveBlob,
-  getRandomMemoryDesc,
+  getRandomMemory,
   getEmailFromToken,
-} = require("../data/util");
+} = require("./util");
 
 const getMemories = async () => {
   const data = await readData("memories.json");
@@ -30,7 +28,6 @@ const getMemories = async () => {
 };
 
 const addRandomMemory = async (token, randomuser) => {
-  let user = null;
   let email = "";
 
   if (randomuser) {
@@ -41,62 +38,14 @@ const addRandomMemory = async (token, randomuser) => {
     email = getEmailFromToken(token);
   }
 
-  user = await get(email);
-
-  const types = {
-    PETS: {
-      type: "pets",
-      imageCategory: "wildlife",
-    },
-    DISHES: {
-      type: "dishes",
-      imageCategory: "food",
-    },
-    CITY: {
-      type: "cities",
-      imageCategory: "city",
-    },
-  };
-
-  const type = [types.PETS, types.DISHES, types.CITY][
-    Math.floor(Math.random() * 3)
-  ];
-  const desc = await getRandomMemoryDesc(type.type);
-  const response = await fetch(
-    `https://api.api-ninjas.com/v1/randomimage?category=${type.imageCategory}`,
-    {
-      method: "GET",
-      headers: {
-        "X-Api-Key": "pIQj3H/1jY4C/1AMUy8vTw==JmAjOEz6ulQmAfVr",
-        Accept: "image/jpg",
-      },
-    }
-  );
-
-  if (!response.ok) throw "fail to create image. ";
-
-  const createdAt = new Date().getTime();
-
-  // blob
-  const blob = await response.blob();
-  const filename = `./public/images/memory-${createdAt}.png`;
+  const user = await get(email);
+  const randomMemory = await getRandomMemory(user);
 
   // data entry
   const storedData = await readData("memories.json");
-  const memoryId = generateId();
-  if (!storedData.memories) storedData.memories = [];
+  storedData.memories = storedData.memories || [];
+  storedData.memories.push(randomMemory);
 
-  storedData.memories.push({
-    id: memoryId,
-    userId: user.id,
-    createdAt,
-    filename: `images/memory-${createdAt}.png`,
-    type: type.type,
-    title: desc.name,
-    desc: desc.desc,
-  });
-
-  await saveBlob(filename, blob);
   await writeData("memories.json", storedData);
 };
 

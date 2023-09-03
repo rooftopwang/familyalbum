@@ -60,7 +60,6 @@ router.post("/login", async (req, res) => {
       errors: { credentials: "Invalid email or password entered." },
     });
   }
-
   const token = createJSONToken(email);
   res.json({
     token,

@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("path");
+const { v4: generateId } = require("uuid");
 
 async function readData(filename) {
   try {
@@ -110,6 +111,59 @@ async function getRandomUser() {
   }
 }
 
+async function getRandomMemory(user) {
+  const types = {
+    PETS: {
+      type: "pets",
+      imageCategory: "wildlife",
+    },
+    DISHES: {
+      type: "dishes",
+      imageCategory: "food",
+    },
+    CITY: {
+      type: "cities",
+      imageCategory: "city",
+    },
+  };
+
+  const type = [types.PETS, types.DISHES, types.CITY][
+    Math.floor(Math.random() * 3)
+  ];
+  const desc = await getRandomMemoryDesc(type.type);
+  const response = await fetch(
+    `https://api.api-ninjas.com/v1/randomimage?category=${type.imageCategory}`,
+    {
+      method: "GET",
+      headers: {
+        "X-Api-Key": "pIQj3H/1jY4C/1AMUy8vTw==JmAjOEz6ulQmAfVr",
+        Accept: "image/jpg",
+      },
+    }
+  );
+
+  if (!response.ok) throw "fail to create image. ";
+
+  const createdAt = new Date().getTime();
+
+  // blob
+  const blob = await response.blob();
+  const filename = `./public/images/memory-${createdAt}.png`;
+
+  const memory = {
+    id: generateId(),
+    userId: user.id,
+    createdAt,
+    filename: `images/memory-${createdAt}.png`,
+    type: type.type,
+    title: desc.name,
+    desc: desc.desc,
+  };
+
+  await saveBlob(filename, blob);
+  return memory;
+}
+
 function getRandomPhone() {
   return `${
     Math.floor(Math.random() * 10) % 2 == 1 ? "647" : "416"
@@ -138,6 +192,7 @@ exports.deleteALlContent = deleteALlContent;
 exports.getEmailFromToken = getEmailFromToken;
 exports.getRandomAvatar = getRandomAvatar;
 exports.getRandomUser = getRandomUser;
+exports.getRandomMemory = getRandomMemory;
 // exports.getRandomAddress = getRandomAddress;
 exports.getRandomPhone = getRandomPhone;
 exports.getRandomMemoryDesc = getRandomMemoryDesc;

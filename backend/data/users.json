@@ -1,1 +1,20 @@
-{"users":[{"id":"6b58830d-5801-4981-88a5-db36ba6a863a","name":"Wolfgang Wang","email":"wolfgangwang@hotmail.ca","password":"$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG","address":{"city":"East Theresashire","country":"USA","state":"AK","street":"391 Jennifer Heights"},"isAdmin":true,"createdAt":1693597541105,"avatar":"/assets/avatars/avatar-carson-darrin.png","phone":"647-609-9897"},{"id":"54c3966b-a383-4c65-9939-643063ba024f","name":"Thomas Smith","email":"reynoldscynthia@yahoo.com","password":"$2a$12$MBYBOUeQLb9HtFTPCptyc.4VCYRwcxMBigkYOvMF940nQmT9di6Jm","address":{"city":"Michaelville","country":"USA","state":"CT","street":"274 James Rapids Suite 430"},"isAdmin":false,"createdAt":1693702649791,"avatar":"/assets/avatars/avatar-omar-darboe.png","phone":"647-701-5424"},{"id":"c86c8a63-08d4-45fd-aec5-9ff6ad2ca30f","name":"Trevor Adkins","email":"vancedaniel@hotmail.com","password":"$2a$12$J5FZ6yy/S2tCtfQ1ebbOsuVRv9PnRVLYgAZFwDH4hxeX1c.0S/1zm","address":{"city":"East Reneemouth","country":"USA","state":"ND","street":"83385 Kyle Junction"},"isAdmin":false,"createdAt":1693703967794,"avatar":"/assets/avatars/avatar-omar-darboe.png","phone":"647-414-8524"},{"id":"33311f7e-9835-4ef3-ad22-c11f2911ab26","name":"Jordan Cox","email":"hamiltondouglas@gmail.com","password":"$2a$12$7iZHs5Q7sjgm/DcKtNe.xuepbY7N7FtWZSNSkEjCF.oDwi6f8B30a","address":{"city":"New Aaron","country":"USA","state":"TN","street":"1429 Christy Trace Suite 004"},"isAdmin":false,"createdAt":1693703977777,"avatar":"/assets/avatars/avatar-iulia-albu.png","phone":"416-737-7591"},{"id":"398dd1a1-73bb-4694-8306-54a0611a0b3e","name":"Jerry Wallace","email":"spencerashley@gmail.com","password":"$2a$12$wq1pYttb8cIYHu.UUoLVau78kxi4tMQDwJHjfb460/HHN0gaHWg3a","address":{"city":"Carterchester","country":"USA","state":"WV","street":"0280 Humphrey Estates Suite 006"},"isAdmin":false,"createdAt":1693704942452,"avatar":"/assets/avatars/avatar-fran-perez.png","phone":"647-280-9411"}]}
+{
+  "users": [
+    {
+      "id": "6b58830d-5801-4981-88a5-db36ba6a863a",
+      "name": "Wolfgang Wang",
+      "email": "wolfgangwang@hotmail.ca",
+      "password": "$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG",
+      "address": {
+        "city": "East Theresashire",
+        "country": "USA",
+        "state": "AK",
+        "street": "391 Jennifer Heights"
+      },
+      "isAdmin": true,
+      "createdAt": 1693597541105,
+      "avatar": "/assets/avatars/avatar-carson-darrin.png",
+      "phone": "647-609-9897"
+    }
+  ]
+}
