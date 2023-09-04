@@ -32,13 +32,7 @@ async function _addData(table, objs) {
   const path = `data/${table}.json`;
   try {
     const existingData = (await _readData(filename)) || [];
-
     const newData = [...existingData, ...objs];
-
-    console.log("inside objs..");
-    console.log(objs);
-    console.log("inside newData..");
-    console.log(newData);
 
     await fs.promises.writeFile(path, JSON.stringify(newData));
   } catch (e) {
@@ -62,29 +56,28 @@ async function POST(table, objs) {
 
 async function deleteALlContent() {
   let users, admins;
+  const defaultUser = {
+    id: "6b58830d-5801-4981-88a5-db36ba6a863a",
+    name: "Wolfgang Wang",
+    email: "wolfgangwang@hotmail.ca",
+    password: "$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG",
+    address: {
+      city: "East Theresashire",
+      country: "USA",
+      state: "AK",
+      street: "391 Jennifer Heights",
+    },
+    isAdmin: true,
+    createdAt: 1693597541105,
+    avatar: "/assets/avatars/avatar-carson-darrin.png",
+    phone: "647-609-9897",
+  };
+
   try {
     users = await _readData("users");
-    admins = users.filter((user) => user.isAdmin === true);
+    admins = users.filter((user) => user.isAdmin === true) || [defaultUser];
   } catch (err) {
-    admins = [
-      {
-        id: "6b58830d-5801-4981-88a5-db36ba6a863a",
-        name: "Wolfgang Wang",
-        email: "wolfgangwang@hotmail.ca",
-        password:
-          "$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG",
-        address: {
-          city: "East Theresashire",
-          country: "USA",
-          state: "AK",
-          street: "391 Jennifer Heights",
-        },
-        isAdmin: true,
-        createdAt: 1693597541105,
-        avatar: "/assets/avatars/avatar-carson-darrin.png",
-        phone: "647-609-9897",
-      },
-    ];
+    admins = [defaultUser];
   }
 
   _writeData("users", admins);
