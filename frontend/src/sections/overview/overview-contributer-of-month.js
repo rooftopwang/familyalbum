@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import CurrencyDollarIcon from "@heroicons/react/24/solid/CurrencyDollarIcon";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Avatar, Card, CardContent, Stack, SvgIcon, Typography } from "@mui/material";
 
 export const OverviewContributerOfMonth = (props) => {
@@ -29,7 +29,7 @@ export const OverviewContributerOfMonth = (props) => {
             }}
           >
             <SvgIcon>
-              <CurrencyDollarIcon />
+              <EmojiEventsIcon />
             </SvgIcon>
           </Avatar>
         </Stack>

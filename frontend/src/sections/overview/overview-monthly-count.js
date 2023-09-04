@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import ArrowDownIcon from "@heroicons/react/24/solid/ArrowDownIcon";
 import ArrowUpIcon from "@heroicons/react/24/solid/ArrowUpIcon";
-import UsersIcon from "@heroicons/react/24/solid/UsersIcon";
+import ListBulletIcon from "@heroicons/react/24/solid/ListBulletIcon";
 import { Avatar, Card, CardContent, Stack, SvgIcon, Typography } from "@mui/material";
 
 export const OverviewMonthlyCount = (props) => {
@@ -32,7 +32,7 @@ export const OverviewMonthlyCount = (props) => {
             }}
           >
             <SvgIcon>
-              <UsersIcon />
+              <ListBulletIcon />
             </SvgIcon>
           </Avatar>
         </Stack>
