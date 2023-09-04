@@ -3,25 +3,20 @@ const { v4: generateId } = require("uuid");
 
 const { NotFoundError } = require("../util/errors");
 const {
-  readData,
-  writeData,
+  GET,
+  POST,
   getRandomAvatar,
   getRandomPhone,
   getRandomUser,
 } = require("./util");
 
 async function add(data) {
-  const storedData = await readData("users.json");
-  if (!storedData.users) {
-    storedData.users = [];
-  }
-
   const userId = generateId();
   const hashedPw = await hash(data.password, 12);
   const avatar = await getRandomAvatar();
   const phone = getRandomPhone();
 
-  storedData.users.push({
+  const newUser = {
     id: userId,
     ...data,
     isAdmin: false,
@@ -29,16 +24,13 @@ async function add(data) {
     avatar,
     phone,
     password: hashedPw,
-  });
+  };
 
-  await writeData("users.json", storedData);
+  await POST("users", [newUser]);
   return { id: userId, email: data.email };
 }
 
 async function addMultipleRandomUsers(howmany) {
-  const storedData = await readData("users.json");
-  storedData.users = storedData.users || [];
-
   const tasks = Array(howmany).fill(0);
   const newUsers = await Promise.all(
     tasks.map(async (_) => {
@@ -59,19 +51,17 @@ async function addMultipleRandomUsers(howmany) {
     })
   );
 
-  storedData.users = [...storedData.users, ...newUsers];
-
-  await writeData("users.json", storedData);
+  await POST("users", newUsers);
   return;
 }
 
 async function get(email) {
-  const storedData = await readData("users.json");
-  if (!storedData.users || storedData.users.length === 0) {
+  const users = await GET("users");
+  if (!users || users.length === 0) {
     throw new NotFoundError("Could not find any users.");
   }
 
-  const user = storedData.users.find((ev) => ev.email === email);
+  const user = users.find((ev) => ev.email === email);
   if (!user) {
     throw new NotFoundError("Could not find user for email " + email);
   }
@@ -80,8 +70,8 @@ async function get(email) {
 }
 
 async function getAllUsers() {
-  var data = await readData("users.json");
-  var users = data.users.map((user) => {
+  let users = await GET("users");
+  users = users.map((user) => {
     delete user.password;
     return user;
   });

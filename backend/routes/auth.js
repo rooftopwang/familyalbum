@@ -8,7 +8,6 @@ const { add, get } = require("../data/user");
 router.post("/signup", async (req, res, next) => {
   const data = req.body;
   let errors = {};
-
   if (!isValidEmail(data.email || "")) {
     errors.email = "Invalid email.";
   } else {
@@ -60,6 +59,7 @@ router.post("/login", async (req, res) => {
       errors: { credentials: "Invalid email or password entered." },
     });
   }
+
   const token = createJSONToken(email);
   res.json({
     token,

@@ -1,17 +1,10 @@
 const { get } = require("./user");
-const {
-  readData,
-  writeData,
-  getRandomMemory,
-  getEmailFromToken,
-} = require("./util");
+const { GET, POST, getRandomMemory, getEmailFromToken } = require("./util");
 
 const getMemories = async () => {
-  const data = await readData("memories.json");
-  const memories = data.memories || [];
+  const memories = (await GET("memories")) || [];
 
-  const usersData = await readData("users.json");
-  const users = usersData.users;
+  const users = await GET("users");
 
   const dtos = memories.map((memory) => {
     const usersfiltered = users.filter((user) => user.id == memory.userId);
@@ -31,8 +24,8 @@ const addRandomMemory = async (token, randomuser) => {
   let email = "";
 
   if (randomuser) {
-    const data = await readData("users.json");
-    const emails = data.users.map((user) => user.email);
+    const users = await GET("users");
+    const emails = users.map((user) => user.email);
     email = emails[Math.floor(Math.random() * emails.length)];
   } else {
     email = getEmailFromToken(token);
@@ -41,20 +34,12 @@ const addRandomMemory = async (token, randomuser) => {
   const user = await get(email);
   const randomMemory = await getRandomMemory(user);
 
-  // data entry
-  const storedData = await readData("memories.json");
-  storedData.memories = storedData.memories || [];
-  storedData.memories.unshift(randomMemory);
-
-  await writeData("memories.json", storedData);
+  await POST("memories", [randomMemory]);
 };
 
 const addMultipleRandomMemories = async (howmany = 6) => {
-  const users = (await readData("users.json")).users;
-  const memoryStore = (await readData("memories.json")) || {};
-
+  const users = await GET("users");
   const emails = users.map((user) => user.email);
-  memoryStore.memories = memoryStore.memories || [];
 
   const tasks = Array(howmany).fill(0);
   const newMemories = await Promise.all(
@@ -66,9 +51,7 @@ const addMultipleRandomMemories = async (howmany = 6) => {
     })
   );
 
-  memoryStore.memories = [...memoryStore.memories, ...newMemories];
-
-  await writeData("memories.json", memoryStore);
+  await POST("memories", newMemories);
 };
 exports.getMemories = getMemories;
 exports.addRandomMemory = addRandomMemory;

@@ -1,10 +1,10 @@
-const { readData } = require("./util");
+const { GET } = require("./util");
 
 async function getStatistics() {
-  const monthlyGoalSetting = (await readData("global.json")).monthlyGoal;
-  const users = (await readData("users.json")).users || [];
+  const monthlyGoalSetting = (await GET("global")).monthlyGoal;
+  const users = (await GET("users")) || [];
 
-  let allMemories = (await readData("memories.json")).memories || [];
+  let allMemories = (await GET("memories")) || [];
   allMemories.sort(function (a, b) {
     return b.createdAt - a.createdAt;
   });

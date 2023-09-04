@@ -7,17 +7,19 @@
     "dev": "DEBUG=myapp:* nodemon ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "firebase": "^10.3.1",
+    "firebase-admin": "^11.10.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1",
-    "validator": "^13.11.0",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.0",
     "jsonwebtoken": "^8.5.1",
-    "uuid": "^9.0.0"
+    "morgan": "~1.9.1",
+    "uuid": "^9.0.0",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

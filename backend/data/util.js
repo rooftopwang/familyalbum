@@ -1,30 +1,69 @@
 const fs = require("node:fs");
 const path = require("path");
 const { v4: generateId } = require("uuid");
+const { uploadMultipleData } = require("./firebase");
+const { devNull } = require("node:os");
 
-async function readData(filename) {
+const useFirebase = process.env.USE_FIREBASE;
+
+async function _readData(filename) {
   try {
-    filename = `data/${filename}`;
+    filename = `data/${filename}.json`;
     const data = await fs.promises.readFile(filename, "utf8");
-    return JSON.parse(data);
+    const result = JSON.parse(data);
+
+    return result;
   } catch (e) {
-    return {};
+    return null;
   }
 }
 
-async function writeData(filename, obj) {
-  filename = `data/${filename}`;
+async function _writeData(table, objs) {
+  table = `data/${table}.json`;
   try {
-    await fs.promises.writeFile(filename, JSON.stringify(obj));
+    await fs.promises.writeFile(table, JSON.stringify(objs));
   } catch (e) {
     // to-do: handle error
+  }
+}
+
+async function _addData(table, objs) {
+  const filename = table;
+  const path = `data/${table}.json`;
+  try {
+    const existingData = (await _readData(filename)) || [];
+
+    const newData = [...existingData, ...objs];
+
+    console.log("inside objs..");
+    console.log(objs);
+    console.log("inside newData..");
+    console.log(newData);
+
+    await fs.promises.writeFile(path, JSON.stringify(newData));
+  } catch (e) {
+    // to-do: handle error
+  }
+}
+
+async function GET(table) {
+  if (useFirebase) {
+  } else {
+    return await _readData(table);
+  }
+}
+
+async function POST(table, objs) {
+  if (useFirebase) {
+  } else {
+    await _addData(table, objs);
   }
 }
 
 async function deleteALlContent() {
   let users, admins;
   try {
-    users = (await readData("users.json")).users;
+    users = await _readData("users");
     admins = users.filter((user) => user.isAdmin === true);
   } catch (err) {
     admins = [
@@ -48,8 +87,8 @@ async function deleteALlContent() {
     ];
   }
 
-  writeData("users.json", { users: admins });
-  writeData("memories.json", { memories: [] });
+  _writeData("users", admins);
+  _writeData("memories", []);
 
   const directory = "public/images";
   fs.readdir(directory, (err, files) => {
@@ -76,7 +115,7 @@ function getEmailFromToken(token) {
 
 // users
 async function getRandomAvatar() {
-  const data = await readData("data.json");
+  const data = await _readData("data");
   const avatars = data.newavatars;
   const avatar = avatars[Math.floor(Math.random() * avatars.length)];
   return avatar;
@@ -178,15 +217,15 @@ function getRandomPhone() {
 
 // memories
 async function getRandomMemoryDesc(category) {
-  const data = await readData("data.json");
+  const data = await _readData("data");
   const feeds = data[category];
   const feed = feeds[Math.floor(Math.random() * feeds.length)];
   return feed;
 }
 
-exports.readData = readData;
-exports.writeData = writeData;
 exports.saveBlob = saveBlob;
+exports.GET = GET;
+exports.POST = POST;
 exports.deleteALlContent = deleteALlContent;
 exports.getEmailFromToken = getEmailFromToken;
 exports.getRandomAvatar = getRandomAvatar;
