@@ -39,17 +39,24 @@ router.post("/deleteall", async function (req, res, next) {
   res.sendStatus(200);
 });
 
-router.post("/fillrandom", async function (req, res, next) {
+router.post("/fillrandomusers", async function (req, res, next) {
   const howmany = req.body.howmany || 6;
 
   try {
     await addMultipleRandomUsers(howmany);
+    res.sendStatus(200);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.post("/fillrandommemories", async function (req, res, next) {
+  const howmany = req.body.howmany || 6;
+
+  try {
     await addMultipleRandomMemories(howmany);
     res.sendStatus(200);
   } catch (err) {
-    console.log("inside /fillrandom: ");
-    console.log(err);
-    console.log("inside /fillrandom end. ");
     res.status(500).send(err);
   }
 });

@@ -44,6 +44,6 @@ export const OverviewContributerOfMonth = (props) => {
 };
 
 OverviewContributerOfMonth.propTypes = {
-  value: PropTypes.object.isRequired,
+  value: PropTypes.object,
   sx: PropTypes.object,
 };

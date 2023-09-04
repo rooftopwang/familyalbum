@@ -12,9 +12,22 @@ import {
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import { Chart } from "src/components/chart";
+import { subMonths, format } from "date-fns";
+import { useMemo } from "react";
 
 const useChartOptions = () => {
   const theme = useTheme();
+  const months = useMemo(() => {
+    const results = [];
+    let i = 0;
+    while (i < 12) {
+      const month = subMonths(new Date(), i);
+
+      results.unshift(format(month, "MMM"));
+      i += 1;
+    }
+    return results;
+  }, []);
 
   return {
     chart: {
@@ -47,11 +60,11 @@ const useChartOptions = () => {
       },
     },
     legend: {
-      show: false,
+      show: true,
     },
     plotOptions: {
       bar: {
-        columnWidth: "40px",
+        columnWidth: "60px",
       },
     },
     stroke: {
@@ -71,20 +84,7 @@ const useChartOptions = () => {
         color: theme.palette.divider,
         show: true,
       },
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: months,
       labels: {
         offsetY: 5,
         style: {
@@ -94,7 +94,7 @@ const useChartOptions = () => {
     },
     yaxis: {
       labels: {
-        formatter: (value) => (value > 0 ? `${value}K` : `${value}`),
+        formatter: (value) => (value > 0 ? `${value}` : `${value}`),
         offsetX: -10,
         style: {
           colors: theme.palette.text.secondary,

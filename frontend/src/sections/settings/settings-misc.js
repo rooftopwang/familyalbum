@@ -32,10 +32,9 @@ export const SettingsMisc = () => {
       });
   };
 
-  const handleFillRandom = (event) => {
-    event.preventDefault();
+  const handleActions = (action) => {
     setInFillingRandom(true);
-    fetch("http://localhost:8000/dev/fillrandom", {
+    fetch(`http://localhost:8000/dev/${action}`, {
       method: "POST",
       body: {
         howmany: 6,
@@ -48,6 +47,17 @@ export const SettingsMisc = () => {
         setInFillingRandom(false);
       });
   };
+
+  const handleFillRandomUsers = (event) => {
+    event.preventDefault();
+    handleActions("fillrandomusers");
+  };
+
+  const handleFillRandomMemories = (event) => {
+    event.preventDefault();
+    handleActions("fillrandommemories");
+  };
+
   return (
     <Card>
       <CardHeader subheader="Manage Content and Other Settings" title="Misc Settings" />
@@ -60,7 +70,6 @@ export const SettingsMisc = () => {
               You can delete all content for testing purposes. Do it in develop environment only.
             </Typography>
           </Grid>
-
           <Grid item xs={12} md={2} justifyContent="flex-end" alignItems="flex-end">
             <CardActions sx={{ justifyContent: "flex-end" }}>
               <Button variant="contained" disabled={inDeletingAll} onClick={handleDeleteAll}>
@@ -68,15 +77,38 @@ export const SettingsMisc = () => {
               </Button>
             </CardActions>
           </Grid>
+
           <Grid item xs={12} md={10}>
-            <Typography variant="subtitle2">Fill Random Data</Typography>
+            <Typography variant="subtitle2">Fill Random Users</Typography>
             <Typography color="neutral.500" variant="body2">
-              Fill database with random users and memory feeds for testing.
+              Fill database with random users for testing.
             </Typography>
           </Grid>
           <Grid item xs={12} md={2} justifyContent="flex-end" alignItems="flex-end">
             <CardActions sx={{ justifyContent: "flex-end" }}>
-              <Button variant="contained" disabled={inFillingRandom} onClick={handleFillRandom}>
+              <Button
+                variant="contained"
+                disabled={inFillingRandom}
+                onClick={handleFillRandomUsers}
+              >
+                {inFillingRandom ? "Processing" : "Fill"}
+              </Button>
+            </CardActions>
+          </Grid>
+
+          <Grid item xs={12} md={10}>
+            <Typography variant="subtitle2">Fill Random Memories</Typography>
+            <Typography color="neutral.500" variant="body2">
+              Fill database with memory feeds for testing.
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={2} justifyContent="flex-end" alignItems="flex-end">
+            <CardActions sx={{ justifyContent: "flex-end" }}>
+              <Button
+                variant="contained"
+                disabled={inFillingRandom}
+                onClick={handleFillRandomMemories}
+              >
                 {inFillingRandom ? "Processing" : "Fill"}
               </Button>
             </CardActions>

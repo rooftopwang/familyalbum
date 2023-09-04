@@ -57,6 +57,6 @@ export const OverviewMonthlyCount = (props) => {
 };
 
 OverviewMonthlyCount.propTypes = {
-  value: PropTypes.object.isRequired,
+  value: PropTypes.object,
   sx: PropTypes.object,
 };

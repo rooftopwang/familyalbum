@@ -51,6 +51,6 @@ export const OverviewMonthlyGoalReached = (props) => {
 };
 
 OverviewMonthlyGoalReached.propTypes = {
-  value: PropTypes.object.isRequired,
+  value: PropTypes.object,
   sx: PropTypes.object,
 };
