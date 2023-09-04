@@ -10,6 +10,7 @@ var authRouter = require("./routes/auth");
 var usersRouter = require("./routes/users");
 var memoryRouter = require("./routes/memory");
 var devRouter = require("./routes/dev");
+require("dotenv").config();
 
 var app = express();
 

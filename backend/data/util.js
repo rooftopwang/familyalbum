@@ -1,10 +1,12 @@
 const fs = require("node:fs");
 const path = require("path");
 const { v4: generateId } = require("uuid");
-const { uploadMultipleData } = require("./firebase");
+const { get, post, delete_all } = require("./firebase");
 const { devNull } = require("node:os");
 
-const useFirebase = process.env.USE_FIREBASE;
+function _useFirebase() {
+  return process.env.USE_FIREBASE === "true";
+}
 
 async function _readData(filename) {
   try {
@@ -41,14 +43,16 @@ async function _addData(table, objs) {
 }
 
 async function GET(table) {
-  if (useFirebase) {
+  if (_useFirebase()) {
+    return await get(table);
   } else {
     return await _readData(table);
   }
 }
 
 async function POST(table, objs) {
-  if (useFirebase) {
+  if (_useFirebase()) {
+    await post(table, objs);
   } else {
     await _addData(table, objs);
   }
@@ -57,13 +61,14 @@ async function POST(table, objs) {
 async function PUT() {}
 
 async function DELETE(table, objs) {
-  if (useFirebase) {
+  if (_useFirebase()) {
   } else {
   }
 }
 
 async function DELETE_ALL(table) {
-  if (useFirebase) {
+  if (_useFirebase()) {
+    await delete_all(table);
   } else {
     switch (table) {
       case "users":
@@ -225,16 +230,9 @@ function getRandomPhone() {
   }-${Math.floor(Math.random() * 1000)}-${Math.floor(Math.random() * 10000)}`;
 }
 
-// async function getRandomAddress() {
-//   const data = await readData("data.json");
-//   const addresses = data.newaddress;
-//   const address = addresses[Math.floor(Math.random() * addresses.length)];
-//   return address;
-// }
-
 // memories
 async function getRandomMemoryDesc(category) {
-  const data = await GET("data");
+  const data = await _readData("data");
   const feeds = data[category];
   const feed = feeds[Math.floor(Math.random() * feeds.length)];
   return feed;

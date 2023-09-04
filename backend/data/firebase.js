@@ -32,17 +32,18 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
 // Get a list of cities from your database
-async function getUsers() {
-  const colRef = collection(db, "users");
+async function get(table) {
+  const colRef = collection(db, table);
   const usersSnapshot = await getDocs(colRef);
-  const users = usersSnapshot.docs.map((doc) => doc.data());
-  return users;
+  const data = usersSnapshot.docs.map((doc) => doc.data());
+  return data;
 }
 
 async function uploadData(table, obj) {
   await uploadMultipleData(table, [obj]);
 }
-async function uploadMultipleData(table, objs = []) {
+async function post(table, objs = []) {
+  console.log("inside post......");
   const batch = writeBatch(db);
   objs.forEach((obj) => {
     const ref = doc(db, table, obj.id);
@@ -51,6 +52,19 @@ async function uploadMultipleData(table, objs = []) {
 
   await batch.commit();
 }
-exports.getUsers = getUsers;
-exports.uploadMultipleData = uploadMultipleData;
-exports.uploadData = uploadData;
+
+async function delete_all(table) {
+  const batch = writeBatch(db);
+  const objs = await get(table);
+
+  objs.forEach((obj) => {
+    const ref = doc(db, table, obj.id);
+    batch.delete(ref);
+  });
+
+  await batch.commit();
+}
+
+exports.get = get;
+exports.post = post;
+exports.delete_all = delete_all;
