@@ -82,7 +82,7 @@ const iconMapOptions = () => {
 };
 
 export const OverviewMemoryTypes = (props) => {
-  const { chartSeries, labels, sx } = props;
+  const { chartSeries = [], labels, sx } = props;
   const chartOptions = useChartOptions(labels);
   const iconMaps = iconMapOptions();
 

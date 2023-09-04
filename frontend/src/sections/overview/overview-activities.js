@@ -105,7 +105,19 @@ const useChartOptions = () => {
 };
 
 export const OverviewActivities = (props) => {
-  const { chartSeries, sx } = props;
+  const {
+    chartSeries = [
+      {
+        name: "This year",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+      {
+        name: "Last year",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      },
+    ],
+    sx,
+  } = props;
   const chartOptions = useChartOptions();
 
   return (
