@@ -109,7 +109,6 @@ async function deleteALlContent() {
 
   await DELETE_ALL("users");
   await DELETE_ALL("memories");
-  console.log(admins);
   await POST("users", admins);
 
   const directory = "public/images";

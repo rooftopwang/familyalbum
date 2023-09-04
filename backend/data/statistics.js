@@ -1,7 +1,7 @@
 const { GET } = require("./util");
 
 async function getStatistics() {
-  const monthlyGoalSetting = (await GET("global")).monthlyGoal;
+  const monthlyGoalSetting = (await GET("global"))[0].monthlyGoal;
   const users = (await GET("users")) || [];
 
   let allMemories = (await GET("memories")) || [];
