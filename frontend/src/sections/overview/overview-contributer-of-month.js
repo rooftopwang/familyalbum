@@ -33,6 +33,11 @@ export const OverviewContributerOfMonth = (props) => {
             </SvgIcon>
           </Avatar>
         </Stack>
+        <Stack alignItems="center" direction="row" spacing={2} sx={{ mt: 2 }}>
+          <Typography color="text.secondary" variant="caption">
+            {value.contribute} Uploads
+          </Typography>
+        </Stack>
       </CardContent>
     </Card>
   );

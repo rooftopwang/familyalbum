@@ -9,6 +9,15 @@ async function getStatistics() {
     return b.createdAt - a.createdAt;
   });
 
+  // contributerOfMonth
+  const contributors = {};
+  users.forEach((user) => {
+    contributors[user.id] = {
+      name: user.name,
+      contribute: 0,
+    };
+  });
+
   // count for types
   const types = ["pets", "dishes", "cities"];
   const typesCount = [0, 0, 0];
@@ -17,7 +26,9 @@ async function getStatistics() {
     const index = types.indexOf(memory.type);
     typesCount[index] = typesCount[index] + 1;
     thisMonthSum += 1;
+    contributors[memory.userId].contribute += 1;
   }
+
   //   const total = typesCount.reduce((s, n) => s + n, 0);
   const typesPercentage =
     thisMonthSum === 0
@@ -70,11 +81,17 @@ async function getStatistics() {
     digit: (thisMonthSum * 100) / monthlyGoalSetting,
     progress: (thisMonthSum * 100) / monthlyGoalSetting,
   };
+
   // contributerOfMonth
-  const contributerOfMonth = {
+  let contributerOfMonth = {
     name: "",
     contribute: 0,
   };
+  for (const contributor of Object.values(contributors)) {
+    if (contributor.contribute > contributerOfMonth.contribute)
+      contributerOfMonth = contributor;
+  }
+  contributerOfMonth.name = contributerOfMonth.name.split(" ")[0];
 
   // chartData
   prevMemoriesCount[0].data[11] = thisMonthSum;
