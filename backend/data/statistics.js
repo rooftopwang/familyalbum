@@ -2,7 +2,7 @@ const { GET } = require("./util");
 const { createImageUrl } = require("./firebase");
 
 async function getStatistics() {
-  const useFirebase = process.env.USE_FIREBASE;
+  const useFirebase = process.env.USE_FIREBASE === "true";
   const monthlyGoalSetting = (await GET("global"))[0].monthlyGoal;
   const users = (await GET("users")) || [];
 

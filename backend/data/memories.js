@@ -3,7 +3,7 @@ const { createImageUrl } = require("./firebase");
 const { GET, POST, getRandomMemory, getEmailFromToken } = require("./util");
 
 const getMemories = async () => {
-  const useFirebase = process.env.USE_FIREBASE;
+  const useFirebase = process.env.USE_FIREBASE === "true";
   const memories = (await GET("memories")) || [];
 
   const users = await GET("users");
@@ -19,6 +19,8 @@ const getMemories = async () => {
       memory.filename = await createImageUrl("memories", memory.filename);
     else memory.filename = "http://localhost:8000/images/" + memory.filename;
 
+    console.log("filename: ");
+    console.log(memory.filename);
     dtos.push({
       ...memory,
       author: username,

@@ -1,1 +1,66 @@
-[{"id":"6b58830d-5801-4981-88a5-db36ba6a863a","name":"Wolfgang Wang","email":"wolfgangwang@hotmail.ca","password":"$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG","address":{"city":"East Theresashire","country":"USA","state":"AK","street":"391 Jennifer Heights"},"isAdmin":true,"createdAt":1693597541105,"avatar":"/assets/avatars/avatar-carson-darrin.png","phone":"647-609-9897"},{"id":"254b24b8-3554-47bf-abd2-c60d62fa2e35","name":"Brad Turner","email":"tim91@gmail.com","password":"$2a$12$9IM735J.Vn8iUdkfwaU1gORpUlJfaxj4SNvMqcqNw/Y4JvPcUuWCu","address":{"city":"Timothyton","country":"USA","state":"NY","street":"8695 Christopher Dam"},"isAdmin":false,"createdAt":1693857864038,"avatar":"/assets/avatars/avatar-omar-darboe.png","phone":"416-187-6215"},{"id":"dfe3b80b-f077-4591-90b5-0629960156cb","name":"James Porter","email":"tina27@gmail.com","password":"$2a$12$VNBMn7u.KAvuIQ4EOFkXtOynOboVmFL1AqlgS9TVCUnz48nBWgBkq","address":{"city":"East Kristifort","country":"USA","state":"WV","street":"2075 Wright Trafficway Suite 971"},"isAdmin":false,"createdAt":1693857864038,"avatar":"/assets/avatars/avatar-omar-darboe.png","phone":"416-967-5789"},{"id":"3f99d84e-efd5-40c7-8e96-a5234cd46368","name":"Gina Smith","email":"mcdanieltimothy@hotmail.com","password":"$2a$12$XFQVZReqTYvLFqLdQnB0nelrprSBK4SF4vk.EPTFJRtFj8hRNY4Oa","address":{"city":"Port Manuelhaven","country":"USA","state":"CA","street":"68215 Brady Fort Suite 423"},"isAdmin":false,"createdAt":1693857864037,"avatar":"/assets/avatars/avatar-carson-darrin.png","phone":"416-832-5766"},{"id":"d161277d-182e-4c7a-964b-1374ea33c5e4","name":"Ana Duran","email":"julie23@yahoo.com","password":"$2a$12$Y42b4NnDgSSRidUrqR2G0.y0yFit9unh.wiRmmhmtY6uMMbdb3GJ.","address":{"city":"Perezchester","country":"USA","state":"OR","street":"42538 William Manor Suite 449"},"isAdmin":false,"createdAt":1693857864038,"avatar":"/assets/avatars/avatar-iulia-albu.png","phone":"647-870-7452"},{"id":"f3832eb6-0064-485d-9c73-9d81dd8035bd","name":"Amy Davis","email":"johnsonlatasha@yahoo.com","password":"$2a$12$cGqOXdBaN3hQiG5vETOaM.L3EEqrcWbrT1Yvb7D8B5RnPB4eJor7C","address":{"city":"Williamsport","country":"USA","state":"ND","street":"70769 Carly Curve Apt. 715"},"isAdmin":false,"createdAt":1693857864037,"avatar":"/assets/avatars/avatar-iulia-albu.png","phone":"416-942-9322"},{"id":"800d87ea-b4ef-415f-abb9-dcf9aad671f7","name":"John Carr","email":"eguerra@hotmail.com","password":"$2a$12$XTRELL4MUD6c9hrs1Jz5X.3ziC5ZR8ZVc4e.KjDJMxPkODWXb5aWC","address":{"city":"Port Stuart","country":"USA","state":"VT","street":"0595 Patterson Prairie"},"isAdmin":false,"createdAt":1693857864037,"avatar":"/assets/avatars/avatar-anika-visser.png","phone":"416-827-6945"}]
+[
+  {
+    "id": "6b58830d-5801-4981-88a5-db36ba6a863a",
+    "name": "Wolfgang Wang",
+    "email": "wolfgangwang@hotmail.ca",
+    "password": "$2a$12$aCTupDj7kjCytZSgerI55ODEd9.XTv1/STgq3Tw8DkoCefc6XYnfG",
+    "address": {
+      "city": "East Theresashire",
+      "country": "USA",
+      "state": "AK",
+      "street": "391 Jennifer Heights"
+    },
+    "isAdmin": true,
+    "createdAt": 1693597541105,
+    "avatar": "/assets/avatars/avatar-carson-darrin.png",
+    "phone": "647-609-9897"
+  },
+  {
+    "id": "b280be9a-d526-4d2d-a60a-c4de1e472b59",
+    "name": "Kevin Brown",
+    "email": "osharp@yahoo.com",
+    "password": "$2a$12$4SFew69VA.MMY4BDxfayC.NwRkpLTIlC93qFVvlfkc7QOqIKrOx2W",
+    "address": {
+      "city": "Lake Tonyhaven",
+      "country": "USA",
+      "state": "HI",
+      "street": "444 Gomez Ville"
+    },
+    "isAdmin": false,
+    "createdAt": 1693871057995,
+    "avatar": "/assets/avatars/avatar-carson-darrin.png",
+    "phone": "647-170-5565"
+  },
+  {
+    "id": "9461c5c2-8bfe-4977-95a4-fe9589981383",
+    "name": "William Rocha",
+    "email": "pamela96@yahoo.com",
+    "password": "$2a$12$RY6dJ864NatAMWd99jvzt.mZlSBp0wgoLmG9d9RSOdmlJQBxoqQpG",
+    "address": {
+      "city": "West Nicole",
+      "country": "USA",
+      "state": "HI",
+      "street": "391 Valdez Lakes"
+    },
+    "isAdmin": false,
+    "createdAt": 1693871059781,
+    "avatar": "/assets/avatars/avatar-anika-visser.png",
+    "phone": "416-599-101"
+  },
+  {
+    "id": "8c646224-1faf-41e7-bd49-6822ae6f3219",
+    "name": "Samantha Newman",
+    "email": "larsonjohn@gmail.com",
+    "password": "$2a$12$G9R9SztcK8CKO6wWEaZ1QeDqz27XRsmDGxi2CurU2A2n6Vaupl4Fi",
+    "address": {
+      "city": "Brownshire",
+      "country": "USA",
+      "state": "VA",
+      "street": "5074 Charles Lodge Suite 265"
+    },
+    "isAdmin": false,
+    "createdAt": 1693871061039,
+    "avatar": "/assets/avatars/avatar-penjani-inyene.png",
+    "phone": "416-389-4085"
+  }
+]
