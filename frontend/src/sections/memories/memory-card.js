@@ -44,7 +44,7 @@ export const MemoryCard = (props) => {
               borderRadius: 1,
             }}
             alt="The house from the offer."
-            src={`http://localhost:8000/${memory.filename}`}
+            src={`${memory.filename}`}
           />
         </Box>
         <Typography align="center" gutterBottom variant="h5">

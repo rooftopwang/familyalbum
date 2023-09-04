@@ -1,6 +1,8 @@
 const { GET } = require("./util");
+const { createImageUrl } = require("./firebase");
 
 async function getStatistics() {
+  const useFirebase = process.env.USE_FIREBASE;
   const monthlyGoalSetting = (await GET("global"))[0].monthlyGoal;
   const users = (await GET("users")) || [];
 
@@ -37,6 +39,24 @@ async function getStatistics() {
 
   // feeds
   memories = allMemories.length < 6 ? allMemories : allMemories.slice(0, 6);
+
+  // customize image url
+  const _memory = [];
+  for (const memory of memories) {
+    if (useFirebase)
+      memory.filename = await createImageUrl("memories", memory.filename);
+    else memory.filename = "http://localhost:8000/images/" + memory.filename;
+
+    _memory.push(memory);
+  }
+  memories = _memory;
+
+  //   memories = memories.map((memory) => ({
+  //     ...memory,
+  //     filename: useFirebase
+  //       ? createImageUrl("memory", memory.filename)
+  //       : "images/" + memory.filename,
+  //   }));
 
   const feeds = memories.map((memory) => {
     const feed = ({ id, title, createdAt, filename, type } = memory);

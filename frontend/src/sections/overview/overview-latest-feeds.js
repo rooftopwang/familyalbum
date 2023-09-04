@@ -38,7 +38,7 @@ export const OverviewLatestFeeds = (props) => {
                 {feed.filename ? (
                   <Box
                     component="img"
-                    src={`http://localhost:8000/${feed.filename}`}
+                    src={`${feed.filename}`}
                     sx={{
                       borderRadius: 1,
                       height: 48,

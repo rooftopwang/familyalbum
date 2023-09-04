@@ -1,7 +1,7 @@
 const fs = require("node:fs");
 const path = require("path");
 const { v4: generateId } = require("uuid");
-const { get, post, delete_all } = require("./firebase");
+const { get, post, delete_all, saveImage } = require("./firebase");
 const { devNull } = require("node:os");
 
 function _useFirebase() {
@@ -207,19 +207,24 @@ async function getRandomMemory(user) {
 
   // blob
   const blob = await response.blob();
-  const filename = `./public/images/memory-${createdAt}.png`;
-
+  const filefullname = `./public/images/memory-${createdAt}.png`;
+  const filename = `memory-${createdAt}.png`;
   const memory = {
     id: generateId(),
     userId: user.id,
     createdAt,
-    filename: `images/memory-${createdAt}.png`,
+    filename,
     type: type.type,
     title: desc.name,
     desc: desc.desc,
   };
 
-  await saveBlob(filename, blob);
+  if (_useFirebase()) {
+    await saveImage(filename, blob);
+  } else {
+    await saveBlob(filefullname, blob);
+  }
+
   return memory;
 }
 

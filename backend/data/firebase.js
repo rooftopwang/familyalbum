@@ -1,6 +1,13 @@
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
 const {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  uploadBytesResumable,
+} = require("firebase/storage");
+const {
   getFirestore,
   collection,
   getDocs,
@@ -30,6 +37,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const db = getFirestore();
+const storage = getStorage(app);
 
 // Get a list of cities from your database
 async function get(table) {
@@ -43,7 +51,6 @@ async function uploadData(table, obj) {
   await uploadMultipleData(table, [obj]);
 }
 async function post(table, objs = []) {
-  console.log("inside post......");
   const batch = writeBatch(db);
   objs.forEach((obj) => {
     const ref = doc(db, table, obj.id);
@@ -65,6 +72,26 @@ async function delete_all(table) {
   await batch.commit();
 }
 
+async function saveImage(filename, blob) {
+  try {
+    const arrayBuffer = await blob.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    const storageRef = ref(storage, "/memories/" + filename);
+
+    uploadBytesResumable(storageRef, buffer)
+      .then((snapshot) => {})
+      .catch((err) => {});
+  } catch (e) {}
+  // Create a reference to 'images/mountains.jpg'
+}
+
+async function createImageUrl(type, filename) {
+  return getDownloadURL(ref(storage, `${type}/${filename}`));
+}
+
 exports.get = get;
 exports.post = post;
 exports.delete_all = delete_all;
+exports.saveImage = saveImage;
+exports.createImageUrl = createImageUrl;

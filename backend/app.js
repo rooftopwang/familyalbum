@@ -9,6 +9,7 @@ var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
 var usersRouter = require("./routes/users");
 var memoryRouter = require("./routes/memory");
+var imageRouter = require("./routes/image");
 var devRouter = require("./routes/dev");
 require("dotenv").config();
 
@@ -38,6 +39,7 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 app.use("/memory", memoryRouter);
+app.use("/image", imageRouter);
 app.use("/dev", devRouter);
 
 // catch 404 and forward to error handler

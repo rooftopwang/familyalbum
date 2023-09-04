@@ -1,22 +1,30 @@
 const { get } = require("./user");
+const { createImageUrl } = require("./firebase");
 const { GET, POST, getRandomMemory, getEmailFromToken } = require("./util");
 
 const getMemories = async () => {
+  const useFirebase = process.env.USE_FIREBASE;
   const memories = (await GET("memories")) || [];
 
   const users = await GET("users");
-
-  const dtos = memories.map((memory) => {
+  const dtos = [];
+  for (const memory of memories) {
     const usersfiltered = users.filter((user) => user.id == memory.userId);
     const username =
       usersfiltered == null || usersfiltered.length == 0
         ? null
         : usersfiltered[0].name;
-    return {
+
+    if (useFirebase)
+      memory.filename = await createImageUrl("memories", memory.filename);
+    else memory.filename = "http://localhost:8000/images/" + memory.filename;
+
+    dtos.push({
       ...memory,
       author: username,
-    };
-  });
+    });
+  }
+
   return dtos;
 };
 
