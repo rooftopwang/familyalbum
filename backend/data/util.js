@@ -54,8 +54,29 @@ async function POST(table, objs) {
   }
 }
 
+async function PUT() {}
+
+async function DELETE(table, objs) {
+  if (useFirebase) {
+  } else {
+  }
+}
+
+async function DELETE_ALL(table) {
+  if (useFirebase) {
+  } else {
+    switch (table) {
+      case "users":
+      case "memories": {
+        await _writeData(table, []);
+      }
+    }
+  }
+}
+
 async function deleteALlContent() {
-  let users, admins;
+  let users,
+    admins = [];
   const defaultUser = {
     id: "6b58830d-5801-4981-88a5-db36ba6a863a",
     name: "Wolfgang Wang",
@@ -74,14 +95,17 @@ async function deleteALlContent() {
   };
 
   try {
-    users = await _readData("users");
-    admins = users.filter((user) => user.isAdmin === true) || [defaultUser];
+    users = await GET("users");
+    admins = users.filter((user) => user.isAdmin === true) || [];
+    admins = admins.length === 0 ? [defaultUser] : admins;
   } catch (err) {
     admins = [defaultUser];
   }
 
-  _writeData("users", admins);
-  _writeData("memories", []);
+  await DELETE_ALL("users");
+  await DELETE_ALL("memories");
+  console.log(admins);
+  await POST("users", admins);
 
   const directory = "public/images";
   fs.readdir(directory, (err, files) => {
@@ -210,7 +234,7 @@ function getRandomPhone() {
 
 // memories
 async function getRandomMemoryDesc(category) {
-  const data = await _readData("data");
+  const data = await GET("data");
   const feeds = data[category];
   const feed = feeds[Math.floor(Math.random() * feeds.length)];
   return feed;
