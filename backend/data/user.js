@@ -2,6 +2,7 @@ const { hash } = require("bcryptjs");
 const { v4: generateId } = require("uuid");
 const { NotFoundError } = require("../util/errors");
 const { createImageUrl } = require("./firebase");
+const { getEmailFromToken } = require("../data/util");
 const {
   GET,
   POST,
@@ -81,7 +82,19 @@ async function getAllUsers() {
   return users;
 }
 
+async function getProfile(token) {
+  const email = getEmailFromToken(token);
+  const user = await get(email);
+  delete user.password;
+  if (process.env.USE_FIREBASE === "true")
+    user.avatar = await createImageUrl("avatars", user.avatar);
+  else user.avatar = "/assets/avatars/" + user.avatar;
+
+  return user;
+}
+
 exports.add = add;
 exports.get = get;
 exports.addMultipleRandomUsers = addMultipleRandomUsers;
 exports.getAllUsers = getAllUsers;
+exports.getProfile = getProfile;
