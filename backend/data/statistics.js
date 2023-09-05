@@ -45,7 +45,8 @@ async function getStatistics() {
   for (const memory of memories) {
     if (useFirebase)
       memory.filename = await createImageUrl("memories", memory.filename);
-    else memory.filename = "http://localhost:8000/images/" + memory.filename;
+    else
+      memory.filename = process.env.BACKEND_URL + "/images/" + memory.filename;
 
     _memory.push(memory);
   }

@@ -5,7 +5,8 @@ const { getUsers, setInitUsers } = require("../data/firebase");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
+  res.send("Welcome");
+  // res.render("index", { title: "Express" });
 });
 
 router.get("/statistics", async function (req, res, next) {

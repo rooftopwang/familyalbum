@@ -17,7 +17,8 @@ const getMemories = async () => {
 
     if (useFirebase)
       memory.filename = await createImageUrl("memories", memory.filename);
-    else memory.filename = "http://localhost:8000/images/" + memory.filename;
+    else
+      memory.filename = process.env.BACKEND_URL + "/images/" + memory.filename;
 
     console.log("filename: ");
     console.log(memory.filename);

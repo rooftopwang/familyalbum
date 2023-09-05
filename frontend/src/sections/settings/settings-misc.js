@@ -13,6 +13,7 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from "@mui/material";
+import { API_URL } from "../../utils/misc";
 
 export const SettingsMisc = () => {
   const [inDeletingAll, setInDeletingAll] = useState(false);
@@ -21,7 +22,7 @@ export const SettingsMisc = () => {
   const handleDeleteAll = (event) => {
     event.preventDefault();
     setInDeletingAll(true);
-    fetch("http://localhost:8000/dev/deleteall", {
+    fetch(API_URL() + "/dev/deleteall", {
       method: "POST",
     })
       .catch((err) => {
@@ -34,7 +35,7 @@ export const SettingsMisc = () => {
 
   const handleActions = (action) => {
     setInFillingRandom(true);
-    fetch(`http://localhost:8000/dev/${action}`, {
+    fetch(API_URL() + `/dev/${action}`, {
       method: "POST",
       body: {
         howmany: 6,

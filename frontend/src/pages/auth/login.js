@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { useAuth } from "src/hooks/use-auth";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
+import { API_URL } from "../../utils/misc";
 
 const Page = () => {
   const router = useRouter();
@@ -56,7 +57,7 @@ const Page = () => {
 
   const handleReset = useCallback((event) => {
     event.preventDefault();
-    fetch("http://localhost:8000/dev/deleteall", {
+    fetch(API_URL() + "/dev/deleteall", {
       method: "POST",
     }).catch((err) => {
       console.log(err);

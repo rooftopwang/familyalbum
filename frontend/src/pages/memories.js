@@ -17,6 +17,7 @@ import { MemoryCard } from "src/sections/memories/memory-card";
 import { MemoriesSearch } from "src/sections/memories/memories-search";
 import { useCallback, useEffect, useState } from "react";
 import { useGlobalContext } from "../contexts/global-context";
+import { API_URL } from "../utils/misc";
 
 const Page = () => {
   const [memories, setMemories] = useState([]);
@@ -24,7 +25,7 @@ const Page = () => {
   const globalContext = useGlobalContext();
 
   const fetchMemories = useCallback(async () => {
-    const response = await fetch("http://localhost:8000/memory");
+    const response = await fetch(API_URL() + "/memory");
     const data = await response.json();
     setMemories(data);
   }, []);
@@ -35,7 +36,7 @@ const Page = () => {
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
-        fetch("http://localhost:8000/dev/randommemory", {
+        fetch(API_URL() + "/dev/randommemory", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

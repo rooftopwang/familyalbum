@@ -20,6 +20,7 @@ import { items } from "./config";
 import { SideNavItem } from "./side-nav-item";
 import { useCallback } from "react";
 import { useGlobalContext } from "../../contexts/global-context";
+import { API_URL } from "../../utils/misc";
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
@@ -35,7 +36,7 @@ export const SideNav = (props) => {
       const token = window.sessionStorage.getItem("token");
       const isAuthenticated = token != null && token != "";
       if (isAuthenticated)
-        fetch("http://localhost:8000/dev/randommemory", {
+        fetch(API_URL() + "/dev/randommemory", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

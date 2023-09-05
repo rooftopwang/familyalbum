@@ -10,6 +10,7 @@ import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { UsersTable } from "src/sections/user/users-table";
 import { UsersSearch } from "src/sections/user/users-search";
 import { applyPagination } from "src/utils/apply-pagination";
+import { API_URL } from "../utils/misc";
 
 const now = new Date();
 
@@ -44,7 +45,7 @@ const Page = () => {
   }, []);
 
   const fetchPosts = useCallback(async () => {
-    const response = await fetch("http://localhost:8000/users");
+    const response = await fetch(API_URL() + "/users");
     const resData = await response.json();
     setData(resData);
   }, []);
@@ -52,7 +53,7 @@ const Page = () => {
   const handleAdd = (event) => {
     event.preventDefault();
     setInAddingRandom(true);
-    fetch("http://localhost:8000/dev/randomuser", {
+    fetch(API_URL() + "/dev/randomuser", {
       method: "POST",
     })
       .then((res) => {

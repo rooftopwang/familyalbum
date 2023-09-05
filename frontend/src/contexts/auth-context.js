@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer, useRef } from "react";
 import PropTypes from "prop-types";
+import { API_URL } from "../utils/misc";
 
 const HANDLERS = {
   INITIALIZE: "INITIALIZE",
@@ -125,7 +126,7 @@ export const AuthProvider = (props) => {
       password,
     };
 
-    const response = await fetch("http://localhost:8000/auth/login", {
+    const response = await fetch(API_URL() + "/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -158,7 +159,7 @@ export const AuthProvider = (props) => {
       password,
     };
 
-    const response = await fetch("http://localhost:8000/auth/signup", {
+    const response = await fetch(API_URL() + "/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

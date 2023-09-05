@@ -12,6 +12,7 @@ import { OverviewMonthlyCount } from "src/sections/overview/overview-monthly-cou
 import { OverviewContributerOfMonth } from "src/sections/overview/overview-contributer-of-month";
 import { OverviewMemoryTypes } from "src/sections/overview/overview-memory-types";
 import { useGlobalContext } from "../contexts/global-context";
+import { API_URL } from "../utils/misc";
 
 const now = new Date();
 
@@ -20,7 +21,7 @@ const Page = () => {
   const globalContext = useGlobalContext();
 
   useEffect(() => {
-    fetch("http://localhost:8000/statistics")
+    fetch(API_URL() + "/statistics")
       .then((response) => response.json())
       .then((data) => {
         setState(data);
