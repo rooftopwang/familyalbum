@@ -11,6 +11,7 @@ const {
   getFirestore,
   collection,
   getDocs,
+  updateDoc,
   addDoc,
   writeBatch,
   doc,
@@ -60,6 +61,13 @@ async function post(table, objs = []) {
   await batch.commit();
 }
 
+async function put(table, obj) {
+  const dataRef = doc(db, table, obj.id);
+
+  // Set the "capital" field of the city 'DC'
+  await updateDoc(dataRef, obj);
+}
+
 async function delete_all(table) {
   const batch = writeBatch(db);
   const objs = await get(table);
@@ -92,6 +100,7 @@ async function createImageUrl(type, filename) {
 
 exports.get = get;
 exports.post = post;
+exports.put = put;
 exports.delete_all = delete_all;
 exports.saveImage = saveImage;
 exports.createImageUrl = createImageUrl;

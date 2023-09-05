@@ -58,7 +58,13 @@ async function POST(table, objs) {
   }
 }
 
-async function PUT() {}
+async function PUT(table, obj) {
+  let datas = await _readData(table);
+
+  datas = datas.filter((data) => data.id !== obj.id);
+  datas.push(obj);
+  await _writeData(table, datas);
+}
 
 async function DELETE(table, objs) {
   if (_useFirebase()) {
@@ -245,6 +251,7 @@ async function getRandomMemoryDesc(category) {
 exports.saveBlob = saveBlob;
 exports.GET = GET;
 exports.POST = POST;
+exports.PUT = PUT;
 exports.deleteALlContent = deleteALlContent;
 exports.getEmailFromToken = getEmailFromToken;
 exports.getRandomAvatar = getRandomAvatar;

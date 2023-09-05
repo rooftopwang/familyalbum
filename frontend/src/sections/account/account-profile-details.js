@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
+import { API_URL } from "../../utils/misc";
 import {
   Box,
   Button,
@@ -92,14 +93,28 @@ export const AccountProfileDetails = ({ profile }) => {
     }));
   }, []);
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-  }, []);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      const token = window.sessionStorage.getItem("token");
+      const isAuthenticated = token != null && token != "";
+      if (!isAuthenticated) return;
+
+      fetch(API_URL() + "/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token, profile: values }),
+      });
+    },
+    [values]
+  );
 
   return (
     <form autoComplete="off" noValidate onSubmit={handleSubmit}>
       <Card>
-        <CardHeader subheader="The information can be edited" title="Profile" />
+        <CardHeader subheader="Edit your profile and keep in database" title="Profile" />
         <CardContent sx={{ pt: 0 }}>
           <Box sx={{ m: -1.5 }}>
             <Grid container spacing={3}>
@@ -176,7 +191,9 @@ export const AccountProfileDetails = ({ profile }) => {
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: "flex-end" }}>
-          <Button variant="contained">Save details</Button>
+          <Button variant="contained" type="submit">
+            Save details
+          </Button>
         </CardActions>
       </Card>
     </form>

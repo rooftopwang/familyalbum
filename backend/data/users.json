@@ -12,55 +12,7 @@
     },
     "isAdmin": true,
     "createdAt": 1693597541105,
-    "avatar": "/assets/avatars/avatar-carson-darrin.png",
+    "avatar": "avatar-carson-darrin.png",
     "phone": "647-609-9897"
-  },
-  {
-    "id": "b280be9a-d526-4d2d-a60a-c4de1e472b59",
-    "name": "Kevin Brown",
-    "email": "osharp@yahoo.com",
-    "password": "$2a$12$4SFew69VA.MMY4BDxfayC.NwRkpLTIlC93qFVvlfkc7QOqIKrOx2W",
-    "address": {
-      "city": "Lake Tonyhaven",
-      "country": "USA",
-      "state": "HI",
-      "street": "444 Gomez Ville"
-    },
-    "isAdmin": false,
-    "createdAt": 1693871057995,
-    "avatar": "/assets/avatars/avatar-carson-darrin.png",
-    "phone": "647-170-5565"
-  },
-  {
-    "id": "9461c5c2-8bfe-4977-95a4-fe9589981383",
-    "name": "William Rocha",
-    "email": "pamela96@yahoo.com",
-    "password": "$2a$12$RY6dJ864NatAMWd99jvzt.mZlSBp0wgoLmG9d9RSOdmlJQBxoqQpG",
-    "address": {
-      "city": "West Nicole",
-      "country": "USA",
-      "state": "HI",
-      "street": "391 Valdez Lakes"
-    },
-    "isAdmin": false,
-    "createdAt": 1693871059781,
-    "avatar": "/assets/avatars/avatar-anika-visser.png",
-    "phone": "416-599-101"
-  },
-  {
-    "id": "8c646224-1faf-41e7-bd49-6822ae6f3219",
-    "name": "Samantha Newman",
-    "email": "larsonjohn@gmail.com",
-    "password": "$2a$12$G9R9SztcK8CKO6wWEaZ1QeDqz27XRsmDGxi2CurU2A2n6Vaupl4Fi",
-    "address": {
-      "city": "Brownshire",
-      "country": "USA",
-      "state": "VA",
-      "street": "5074 Charles Lodge Suite 265"
-    },
-    "isAdmin": false,
-    "createdAt": 1693871061039,
-    "avatar": "/assets/avatars/avatar-penjani-inyene.png",
-    "phone": "416-389-4085"
   }
 ]

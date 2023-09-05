@@ -1,11 +1,12 @@
 const { hash } = require("bcryptjs");
 const { v4: generateId } = require("uuid");
 const { NotFoundError } = require("../util/errors");
-const { createImageUrl } = require("./firebase");
+const { createImageUrl, put } = require("./firebase");
 const { getEmailFromToken } = require("../data/util");
 const {
   GET,
   POST,
+  PUT,
   getRandomAvatar,
   getRandomPhone,
   getRandomUser,
@@ -93,8 +94,29 @@ async function getProfile(token) {
   return user;
 }
 
+async function updateProfile(token, profile) {
+  const email = getEmailFromToken(token);
+  let user = await get(email);
+  user = {
+    ...user,
+    name: profile.firstName + " " + profile.lastName,
+    email: profile.email,
+    phone: profile.phone,
+    address: {
+      street: user.address.street,
+      city: user.address.city,
+      state: profile.state,
+      country: profile.country,
+    },
+  };
+
+  if (process.env.USE_FIREBASE === "true") await put("users", user);
+  else await PUT("users", user);
+}
+
 exports.add = add;
 exports.get = get;
 exports.addMultipleRandomUsers = addMultipleRandomUsers;
 exports.getAllUsers = getAllUsers;
 exports.getProfile = getProfile;
+exports.updateProfile = updateProfile;
