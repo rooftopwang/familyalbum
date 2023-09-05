@@ -1,15 +1,15 @@
 {
   "newavatars": [
-    "/assets/avatars/avatar-carson-darrin.png",
-    "/assets/avatars/avatar-fran-perez.png",
-    "/assets/avatars/avatar-jie-yan-song.png",
-    "/assets/avatars/avatar-anika-visser.png",
-    "/assets/avatars/avatar-miron-vitold.png",
-    "/assets/avatars/avatar-penjani-inyene.png",
-    "/assets/avatars/avatar-omar-darboe.png",
-    "/assets/avatars/avatar-siegbert-gottfried.png",
-    "/assets/avatars/avatar-iulia-albu.png",
-    "/assets/avatars/avatar-nasimiyu-danai.png"
+    "avatar-carson-darrin.png",
+    "avatar-fran-perez.png",
+    "avatar-jie-yan-song.png",
+    "avatar-anika-visser.png",
+    "avatar-miron-vitold.png",
+    "avatar-penjani-inyene.png",
+    "avatar-omar-darboe.png",
+    "avatar-siegbert-gottfried.png",
+    "avatar-iulia-albu.png",
+    "avatar-nasimiyu-danai.png"
   ],
   "pets": [
     {

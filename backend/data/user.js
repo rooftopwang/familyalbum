@@ -1,7 +1,7 @@
 const { hash } = require("bcryptjs");
 const { v4: generateId } = require("uuid");
-
 const { NotFoundError } = require("../util/errors");
+const { createImageUrl } = require("./firebase");
 const {
   GET,
   POST,
@@ -71,10 +71,12 @@ async function get(email) {
 
 async function getAllUsers() {
   let users = await GET("users");
-  users = users.map((user) => {
+  for (const user of users) {
     delete user.password;
-    return user;
-  });
+    if (process.env.USE_FIREBASE === "true")
+      user.avatar = await createImageUrl("avatars", user.avatar);
+    else user.avatar = "/assets/avatars/" + user.avatar;
+  }
 
   return users;
 }

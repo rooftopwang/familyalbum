@@ -95,7 +95,7 @@ async function deleteALlContent() {
     },
     isAdmin: true,
     createdAt: 1693597541105,
-    avatar: "/assets/avatars/avatar-carson-darrin.png",
+    avatar: "avatar-carson-darrin.png",
     phone: "647-609-9897",
   };
 

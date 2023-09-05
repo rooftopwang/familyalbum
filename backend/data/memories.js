@@ -20,8 +20,6 @@ const getMemories = async () => {
     else
       memory.filename = process.env.BACKEND_URL + "/images/" + memory.filename;
 
-    console.log("filename: ");
-    console.log(memory.filename);
     dtos.push({
       ...memory,
       author: username,
