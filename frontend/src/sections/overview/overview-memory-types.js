@@ -11,12 +11,12 @@ import {
   Stack,
   SvgIcon,
   Typography,
-  useTheme,
+  useTheme as createTheme,
 } from "@mui/material";
 import { Chart } from "src/components/chart";
 
 const useChartOptions = (labels) => {
-  const theme = useTheme();
+  const theme = createTheme();
 
   return {
     chart: {
@@ -60,7 +60,7 @@ const useChartOptions = (labels) => {
 };
 
 const iconMapOptions = () => {
-  const theme = useTheme();
+  const theme = createTheme();
   const iconMaps = {
     Pets: (
       <SvgIcon>

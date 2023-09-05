@@ -152,7 +152,7 @@ export const SideNav = (props) => {
           }}
         >
           <Typography color="neutral.100" variant="subtitle2">
-            Haven't Add One Today?
+            Haven&apos;t Add One Today?
           </Typography>
           <Typography color="neutral.500" variant="body2">
             Add a random memory

@@ -69,7 +69,7 @@ export const UsersTable = (props) => {
                 const createdAt = format(user.createdAt, "dd/MM/yyyy");
 
                 return (
-                  <TableRow hover key={user.id} selected={isSelected}>
+                  <TableRow hover selected={isSelected} key={user.id}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={isSelected}
